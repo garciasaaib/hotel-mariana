@@ -1,0 +1,66 @@
+diagrama ERD
+
+hotel = 1
+pisos = 6
+
+1-4 pisos tienen habitaciones sencillas
+100 habitaciones
+
+80 habitaciones sencillas - 1000$ por dia sin iva
+13 habitaciones junior - 2500$ por dia
+7 habitaciones suite - 6000$ por dia
+
+pago con otra divisa += 10%
+
+cliente llega al hotel: 
+	reservacion online completa
+		obtiene datos de la habitacion y llaves
+	reservacion online incompleta o en local
+		se solicita llenar los datos
+		se solicita datos de TC: 
+			liquidar el pago
+			pagar al finalizar la estancia
+
+administrador de hotel:
+	habitaciones disponibles y no disponibles en una tabla
+	detalle de habitaciones
+	cambiar a cliente de habitacion, afectando el precio y agregando el motivo
+	registrar anomalias dentro del hotel: tickets de mantenimiento o quejas
+	extra: graficos de habitaciones ocupadas, clientes, huespedes, etc.
+	hay 3 administradores del hotel, cada registro debe tener nombre
+
+atributos user : 
+	nombre, 
+	apellidos, 
+	domicilio, 
+	ciudad, 
+	estado, 
+	país, 
+	teléfono celular,
+	correo electrónico
+
+atributos reservacion:
+	tipo_habitacion
+	id_habitacion
+	rango_dias
+	tarjeta_credito
+	transaccion_exitosa: boolean
+	mandar_correo_reservacion_exitosa
+	registro_entrada
+	registro_salida
+	mandar_correo_factura_1dia_despues
+	contesto_encuesta: 10% de descuento la proxima reservacion
+	
+
+atributos habitacion:
+	id
+	estado: [disponible, ocupada, no-disponible]
+	fotos: array(10)
+	disponibilidad
+	
+atributos cargos_extra:
+	lavanderia
+	comida
+	toallas
+	extras
+	
