@@ -12,12 +12,12 @@ pisos = 6
 
 pago con otra divisa += 10%
 
-cliente llega al hotel: 
+cliente llega al hotel:
 	reservacion online completa
 		obtiene datos de la habitacion y llaves
 	reservacion online incompleta o en local
 		se solicita llenar los datos
-		se solicita datos de TC: 
+		se solicita datos de TC:
 			liquidar el pago
 			pagar al finalizar la estancia
 
@@ -29,13 +29,13 @@ administrador de hotel:
 	extra: graficos de habitaciones ocupadas, clientes, huespedes, etc.
 	hay 3 administradores del hotel, cada registro debe tener nombre
 
-atributos user : 
-	nombre, 
-	apellidos, 
-	domicilio, 
-	ciudad, 
-	estado, 
-	país, 
+atributos user:
+	nombre
+	apellidos
+	domicilio
+	ciudad
+	estado
+	país
 	teléfono celular,
 	correo electrónico
 
@@ -50,17 +50,16 @@ atributos reservacion:
 	registro_salida
 	mandar_correo_factura_1dia_despues
 	contesto_encuesta: 10% de descuento la proxima reservacion
-	
 
 atributos habitacion:
 	id
 	estado: [disponible, ocupada, no-disponible]
 	fotos: array(10)
 	disponibilidad
-	
+
+
 atributos cargos_extra:
 	lavanderia
 	comida
 	toallas
 	extras
-	
