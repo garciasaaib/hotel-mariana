@@ -1,0 +1,38 @@
+{
+  "room_type": [
+    { "name": "simple", "price": 1000 },
+    { "name": "junior", "price": 2500 },
+    { "name": "suite", "price": 6000 }
+  ],
+  "room": [
+    { "number": 1, "id_type": 1, "state": "" },
+    { "number": 2, "id_type": 2, "state": "" },
+    { "number": 3, "id_type": 3, "state": "" }
+  ],
+  "client": [
+    {
+      "name": "Adrian",
+      "last_name": "Garcia",
+      "address": "Olivos 43, comerciantes",
+      "city": "Tepic",
+      "state": "Nayarit",
+      "country": "Mexico",
+      "celphone": "3111145982",
+      "email": "garciasaaib@gmail.com"
+    }
+  ],
+  "receptionist": [{}],
+
+  "questions": [
+    { "id": 1, "content": "holaquehace?" },
+    { "id": 2, "content": "holaquehace?" },
+    { "id": 3, "content": "holaquehace?" },
+    { "id": 4, "content": "holaquehace?" }
+  ],
+  "quiz": [
+    { "id": 1, "id_reservation": 1 }
+  ],
+  "answers": [
+    { "id_quiz": 1 }
+  ]
+}
