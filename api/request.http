@@ -1,12 +1,7 @@
-GET http://localhost:3000/rooms
+GET http://localhost:3001/api HTTP/1.1
 
 ###
+GET http://localhost:3001/api/user HTTP/1.1
 
-POST http://localhost:3000/post HTTP/1.1
-content-type: application/json
-
-{
-    "userId": "1",
-    "title": "sample",
-    "content": "lorem itsum"
-}
+###
+GET http://localhost:3001/api/other HTTP/1.1
