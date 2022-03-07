@@ -4,7 +4,7 @@ const { DB_PORT, DB_HOST, DB_NAME, DB_PASS, DB_USER } = process.env
 module.exports = {
   username: DB_USER || "postgres",
   password: DB_PASS || "admin",
-  database: DB_NAME || "bank",
+  database: DB_NAME || "hotel",
   dialect: "postgres",
   host: DB_HOST || "127.0.0.1",
   port: DB_PORT || 5432,

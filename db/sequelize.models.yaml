@@ -1,0 +1,12 @@
+model:generate
+  --name Room_types
+  --attributes
+    name:string
+    price:float(2)
+    max_guest:number
+
+model:generate 
+  --name Room_photo 
+  --attributes 
+    image:string
+    id_room_type:number

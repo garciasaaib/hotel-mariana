@@ -1,4 +1,5 @@
-GET http://localhost:3001/api HTTP/1.1
+### room list
+GET http://localhost:3001/api/rooms HTTP/1.1
 
 ###
 GET http://localhost:3001/api/user HTTP/1.1

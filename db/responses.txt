@@ -1,25 +1,36 @@
 diagrama ERD
 
+### requerimientos
+Controlar y administrar reservacion de habitaciones
+
 hotel = 1
 pisos = 6
 
 1-4 pisos tienen habitaciones sencillas
 100 habitaciones
 
-80 habitaciones sencillas - 1000$ por dia sin iva
-13 habitaciones junior - 2500$ por dia
-7 habitaciones suite - 6000$ por dia
+80 habitaciones sencillas - 1000$ por noche sin iva
+13 habitaciones junior - 2500$ por noche
+7 habitaciones suite - 6000$ por noche
 
-pago con otra divisa += 10%
+iva por reservacion += 16%
+
+pago con otra divisa: 
+	hab_costo_other_currency -> mxn -= 10%
+
 
 cliente llega al hotel:
 	reservacion online completa
 		obtiene datos de la habitacion y llaves
 	reservacion online incompleta o en local
-		se solicita llenar los datos
-		se solicita datos de TC:
-			liquidar el pago
-			pagar al finalizar la estancia
+		no data: 
+			se solicita llenar los datos
+		half data: 
+			se solicita datos de TC:
+				dias establecidos: 
+					liquidar el pago
+				dias libres:
+					pagar al finalizar la estancia
 
 administrador de hotel:
 	habitaciones disponibles y no disponibles en una tabla
@@ -53,6 +64,7 @@ atributos reservacion:
 
 atributos habitacion:
 	id
+	max_personas_habitacion
 	estado: [disponible, ocupada, no-disponible]
 	fotos: array(10)
 	disponibilidad
