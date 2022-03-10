@@ -1,8 +1,8 @@
-### room list
-GET http://localhost:3001/api/rooms HTTP/1.1
+### Room list with the info to check if is avaiable or not & why
+GET http://localhost:3001/api/v1/rooms HTTP/1.1
 
 ###
-GET http://localhost:3001/api/user HTTP/1.1
+GET http://localhost:3001/api/v1/user HTTP/1.1
 
 ###
-GET http://localhost:3001/api/other HTTP/1.1
+GET http://localhost:3001/api/v1/other HTTP/1.1
