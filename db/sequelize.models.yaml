@@ -1,12 +1,119 @@
-model:generate
-  --name Room_types
-  --attributes
-    name:string
-    price:float(2)
-    max_guest:number
+npx sequelize-cli model:generate 
 
-model:generate 
+  --name Room_type 
+  --attributes 
+    name: string,
+    price: float(2),
+    max_guest: integer
+
   --name Room_photo 
   --attributes 
-    image:string
-    id_room_type:number
+    image: string,
+    id_room_type: number
+
+  --name Room
+  --attributes
+    id_room_type: number,
+    roof: number,
+    is_available: boolean
+
+  --name User
+  --attribute
+    email: string
+    password: string
+    firstnames: string
+    lastname: string
+    secondlastname: string
+    identification_name: string
+    identification_code: string
+    phone: integer
+
+  --name Position
+  --attribute
+    position: string
+
+  --name Employee
+  --attribute
+    id_position: integer
+    id_user: integer
+    is_active: boolean
+    timestamps: date
+
+  --name Ticket
+  --attribute 
+    id_employee: integer
+    description: string,
+    state: boolean,
+    timestamps: date,
+
+  --name Client
+  --attributes
+    id_user: integer
+
+    is_discount_survey: boolean
+    kind_client: enum(0,1,2)
+    sign: number
+
+  --name Client_financial
+  --attributes
+    id_client: number
+    cc_number: number
+    cc_validated: boolean
+
+  --name Reservation
+  --attributes
+    id_client: number
+    id_client_room: number
+    is_registered_local: boolean
+    is_resercation_over: boolean
+    is_debt_paid: boolean
+    timestamps: date
+    reservation_end: date
+    is_currency_discount: boolean
+    
+  --name Reservation_room
+  --attributes
+    id_reservation: integer
+    id_room: integer
+    date_start: date
+    date_end: date
+    is_paid: boolean
+    date_paid: date
+    guest_amount: integer
+
+  --name List_services
+  --attributes
+    name: string
+    price: float
+
+  --name Reservation_service
+  --attributes
+    id_service: integer
+    id_reservation: integer
+    is_paid: boolean
+    date_paid: date
+    date_create: date
+    is_signed: boolean
+
+  --name Question
+  --attributes
+    content: string
+    type: enum(1,2,3)
+
+  --name Quiz_type
+  --attributes
+    quiz_name: string 
+
+  --name Quiz
+  --attributes
+    id_quiz_type: integer
+    id_bill: integer
+    quiz_name: string
+
+  --name Quiz_answer
+  --attributes
+    id_quiz: integer
+    id_question: integer
+    answer: string
+    comment: string
+

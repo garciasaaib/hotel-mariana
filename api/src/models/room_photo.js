@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: "id_room_type"
       // })
       // Room_type.belongsTo(models.Room)
-      Room_photo.hasOne(models.Room_type)
+      Room_photo.hasOne(models.Room_type, {})
     }
   }
   Room_photo.init({

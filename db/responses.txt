@@ -75,3 +75,5 @@ atributos cargos_extra:
 	comida
 	toallas
 	extras
+
+
