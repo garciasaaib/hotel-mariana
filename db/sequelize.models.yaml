@@ -21,7 +21,7 @@ npx sequelize-cli model:generate
   --attribute
     email: string
     password: string
-    firstnames: string
+    nickname: string
     lastname: string
     secondlastname: string
     identification_name: string
@@ -30,7 +30,7 @@ npx sequelize-cli model:generate
 
   --name Position
   --attribute
-    position: string
+    name: string
 
   --name Employee
   --attribute

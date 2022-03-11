@@ -1,5 +1,6 @@
 import { Router } from "express";
 import userRouter from './user.router'
+import roomRouter from './room.router'
 const router = Router()
 
 import swaggerUi from 'swagger-ui-express';
@@ -12,9 +13,8 @@ router.use('/docs', async (req, res, next) =>{
   next()
 },swaggerUi.serve, swaggerUi.setup());
 
-router.use('/user', userRouter)
-router.use('/rooms',  (req, res, next) =>{
-  res.json({holo: 'holo'})
-})
+// normal routes
+// router.use('/user', userRouter)
+router.use('/room', roomRouter)
 
 export default router

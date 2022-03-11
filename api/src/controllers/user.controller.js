@@ -1,15 +1,21 @@
 import Sequelize from 'sequelize'
-const {User} = require('../models')
+const { User } = require('../models')
 
 export default {
-  create(req, res) {
-    return user.create({
+  // async index(req, res) {},
+  async create(req, res) {
+    res.send({ status: '200', data: "show" })
+  },
+  async store(req, res) {
+    res.send({ status: '200', data: "store" })
+  },
+  async show(req, res) {
+    res.send({ status: '200', data: "show" })
+  },
+  async edit(req, res) {
+    res.send({ status: '200', data: "edit" })
+  },
+  // async update(req, res) {},
+  // async destroy(req, res) {},
 
-    })
-  },
-  async list(req, res) {
-    // return res.send({ status: '200', data: 'result' })
-    return await User.findAll({}).then( result => res.send({ status: '200', data: result }))
-    // res.send({ status: '200', data: 'result' })
-  },
 }
