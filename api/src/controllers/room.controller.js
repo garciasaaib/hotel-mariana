@@ -3,8 +3,12 @@ const { Room } = require('../models')
 
 export default {
   async index(req, res, next) {
-    await Room.findAll()
-    .then(roomList =>  res.status(200).json({ roomList }))
+    try {
+      const response = await Room.findAll()
+      res.status(200).json({ response })
+    } catch (error) {
+      res.status(400).json({ error })
+    }
   },
   // create(req, res) {},
   // store(req, res) {},

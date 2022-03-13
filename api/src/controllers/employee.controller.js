@@ -2,7 +2,9 @@ import Sequelize from 'sequelize'
 const { User } = require('../models')
 
 export default {
-  // async index(req, res) {},
+  async index(req, res) {
+    res.send({ status: '200', data: "show" })
+  },
   async create(req, res) {
     res.send({ status: '200', data: "show" })
   },

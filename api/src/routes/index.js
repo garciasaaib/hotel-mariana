@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userRouter from './user.router'
+import employeeRouter from './employee.router'
 import roomRouter from './room.router'
 const router = Router()
 
@@ -7,6 +7,7 @@ import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 const swaggerDocument = YAML.load('./src/docs/swagger.yaml')
 
+// docs routes
 router.use('/docs', async (req, res, next) =>{
   swaggerDocument.host = req.get('host')
   req.swaggerDoc = swaggerDocument;
@@ -14,7 +15,7 @@ router.use('/docs', async (req, res, next) =>{
 },swaggerUi.serve, swaggerUi.setup());
 
 // normal routes
-// router.use('/user', userRouter)
+router.use('/employee', employeeRouter)
 router.use('/room', roomRouter)
 
 export default router

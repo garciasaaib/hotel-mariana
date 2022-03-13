@@ -2,6 +2,48 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
+
+    await queryInterface.bulkInsert('Room_types', [
+      { name: 'simple', price: 1000, max_guest: 10 },
+      { name: 'junior', price: 2500, max_guest: 10 },
+      { name: 'suite', price: 6000, max_guest: 10 }
+    ], {});
+
+    await queryInterface.bulkInsert('Room_photos', [
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+      { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
+
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+      { image_url: "https://bit.ly/3I1bLzp", id_room_type: 1 },
+
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 },
+      { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 }
+    ], {});
+
     await queryInterface.bulkInsert('Rooms', [
       { id_room_type: 1, roof: 1, is_available: true },
       { id_room_type: 1, roof: 1, is_available: true },
@@ -107,9 +149,12 @@ module.exports = {
       { id_room_type: 3, roof: 4, is_available: true },
       { id_room_type: 3, roof: 4, is_available: true },
     ], {});
+
   },
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Rooms', null, {});
+    await queryInterface.bulkDelete('Room_photos', null, {});
+    await queryInterface.bulkDelete('Room_types', null, {});
   }
 };
