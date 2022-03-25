@@ -20,6 +20,7 @@ npx sequelize-cli model:generate
   --name User
   --attribute
     email: string
+    firstname: string
     password: string
     nickname: string
     lastname: string
@@ -40,7 +41,7 @@ npx sequelize-cli model:generate
     timestamps: date
 
   --name Ticket
-  --attribute 
+  --attribute
     id_employee: integer
     description: string,
     state: boolean,

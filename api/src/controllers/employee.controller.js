@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize'
-const { User } = require('../models')
+const { Employee } = require('../models')
 
 export default {
   async index(req, res) {
-    res.send({ status: '200', data: "show" })
+    const employees = await Employee.find()
+    res.status(200).json(employees)
   },
   async create(req, res) {
     res.send({ status: '200', data: "show" })
