@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstname: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       email: {
@@ -21,27 +21,27 @@ module.exports = {
         type: Sequelize.STRING
       },
       nickname: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       lastname: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       secondlastname: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       identification_name: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       identification_code: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       phone: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.BIGINT
       },
     });

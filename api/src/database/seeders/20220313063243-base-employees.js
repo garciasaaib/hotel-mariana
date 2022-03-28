@@ -1,17 +1,22 @@
 'use strict';
-
+const bcrypt = require('bcrypt');
+const authConfig = require('../../config/auth')
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Positions', [
       { name: 'manager' },
       { name: 'receptionist' }
     ], {});
-
+    async function hashPass(str) {
+      const password1 = await bcrypt.hashSync(str, Number.parseInt(authConfig.rounds))
+      return password1
+    }
     await queryInterface.bulkInsert('Users', [
       {
         email: "garciasaaib@gmail.com",
         firstname: "Adrian",
-        password: "garciasaaib",
+        password: await hashPass("garciasaaib"),
+        // password: "garciasaaib",
         nickname: "garciasaaib",
         lastname: "Garcia",
         secondlastname: "Saaib",
@@ -22,7 +27,7 @@ module.exports = {
       {
         email: "sandino_varela@gmail.com",
         firstname: "Sandino",
-        password: "sandino_varela",
+        password: await hashPass("sandino_varela"),
         nickname: "sandino_varela",
         lastname: "Varela",
         secondlastname: "Lopez",
@@ -33,7 +38,8 @@ module.exports = {
       {
         email: "santiagohibarra@gmail.com",
         firstname: "Santiago",
-        password: "santiagohibarra",
+        password: await hashPass("santiagohibarra"),
+        // password: "santiagohibarra",
         nickname: "santiagohibarra",
         lastname: "Hernandez",
         secondlastname: "Ibarra",
@@ -44,7 +50,8 @@ module.exports = {
       {
         email: "angelramirez@gmail.com",
         firstname: "Angel",
-        password: "angelramirez",
+        password: await hashPass("angelramirez"),
+        // password: "angelramirez",
         nickname: "angelramirez",
         lastname: "Ramirez",
         secondlastname: "Chan",

@@ -3,7 +3,7 @@ const { Employee } = require('../models')
 
 export default {
   async index(req, res) {
-    const employees = await Employee.find()
+    const employees = await Employee.findAll()
     res.status(200).json(employees)
   },
   async create(req, res) {

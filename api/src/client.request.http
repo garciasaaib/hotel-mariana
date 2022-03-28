@@ -9,5 +9,5 @@ GET http://localhost:3001/api/v1/login/token HTTP/1.1
 
 
 ###
-GET http://localhost:3001/api/v1/login/validatetoken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJuYW1lIjoiYWRyaWFuIiwiYWNjZXNzIjp0cnVlLCJpYXQiOjE2NDgwNTE0NDIsImV4cCI6MTY0ODA1MTUwMn0.vkWEXJjgMTrRC8mhBWk4jRwfyCnzBxihr9o0EiuZjV HTTP/1.1
+GET http://localhost:3001/api/v1/login/validatetoken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJuYW1lIjoiYWRyaWFuIiwiYWNjZXNzIjp0cnVlLCJpYXQiOjE2NDgyMjY1NzMsImV4cCI6MTY0ODIyNjYzM30.q6liN1Sbuz1YmTt1CjMLlShiLLHrKIqjHTr_2IL-jJ8 HTTP/1.1
 

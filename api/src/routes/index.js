@@ -1,6 +1,6 @@
 import { Router } from "express";
 import employeeRouter from './employee.router'
-import loginRouter from './login.router'
+import authRouter from './auth.router'
 import roomRouter from './room.router'
 const router = Router()
 
@@ -18,6 +18,6 @@ router.use('/docs', async (req, res, next) =>{
 // normal routes
 router.use('/employee', employeeRouter)
 router.use('/room', roomRouter)
-router.use('/login', loginRouter)
+router.use('/auth', authRouter)
 
 export default router

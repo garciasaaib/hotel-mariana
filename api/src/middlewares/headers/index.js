@@ -8,6 +8,3 @@ module.exports = (req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 }
-// import express from 'express'
-// const app = express()
-// export default app
