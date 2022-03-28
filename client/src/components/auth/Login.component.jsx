@@ -97,7 +97,7 @@ export default class Login extends Component {
       ReactSession.set("email", email);
       ReactSession.set("nickname", nickname);
       // refresh page
-      window.location.reload(false)
+      this.props.toggleSession()
       } catch (error) {
         console.error('Error:', error)
       }

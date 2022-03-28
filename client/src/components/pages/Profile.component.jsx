@@ -7,18 +7,29 @@ export default class Profile extends Component {
     super(props)
     ReactSession.setStoreType("sessionStorage");
     this.state = {
+      user: {}
+    }
+    this.handleLogout = this.handleLogout.bind(this)
+    this.toggleSession = this.toggleSession.bind(this)
+
+
+  }
+  handleLogout() {
+    // borrando sessionStorage
+    Object.keys(this.state.user).forEach(item => {
+      ReactSession.remove(item)
+    })
+
+    // borrando this.state user
+    this.toggleSession()
+  }
+  toggleSession() {
+    this.setState({
       user: {
         email: ReactSession.get("email") || "",
         nickname: ReactSession.get("nickname") || "",
-        token: ""
+        token: "",
       }
-    }
-    this.handleLogout = this.handleLogout.bind(this)
-  }
-  handleLogout() {
-    Object.keys(this.state.user).forEach(item => {
-      ReactSession.remove(item)
-      window.location.reload(false)
     })
   }
   render() {
@@ -26,11 +37,13 @@ export default class Profile extends Component {
     return (
       <div>
         {this.state.user.email
-          ? <>
+          ?
+          <>
             <div>Bienvenido {user.nickname}</div>
-            <input type="submit" onClick={this.handleLogout} value="Cerrar Sesion"/>
+            <input type="submit" onClick={this.handleLogout} value="Cerrar Sesion" />
           </>
-          : <Login />
+          :
+          <Login toggleSession={this.toggleSession}/>
         }
       </div>
     )
