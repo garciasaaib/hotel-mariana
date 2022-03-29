@@ -1,15 +1,17 @@
 ###
-GET http://localhost:3000/api/v1/auth/varify/eyk HTTP/1.1
+GET http://localhost:3000/api/v1/auth/signin/eyk HTTP/1.1
 
 
-###
-POST http://localhost:3000/api/v1/auth/verify HTTP/1.1
+### verify token
+POST http://localhost:3001/api/v1/auth/verify HTTP/1.1
 content-type: application/json
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYXNhYWliQGdtYWlsLmNvbSIsIm5pY2tuYW1lIjoiZ2FyY2lhc2FhaWIiLCJhY2Nlc3MiOnRydWUsImlhdCI6MTY0ODQ0MTIzOSwiZXhwIjoxNjQ4NTI3NjM5fQ.i_LJGJXc1qmy_mvc7S8JqmIsTmOYVcf38iOju9WCAmk"
 }
 
+### get signin metadata
+GET http://localhost:3000/api/v1/auth/signin HTTP/1.1
 
 ### signin
 POST http://localhost:3001/api/v1/auth/signin HTTP/1.1

@@ -5,6 +5,9 @@ import authConfig from '../config/auth'
 import jwt from 'jsonwebtoken'
 
 module.exports = {
+  async schema(req, res) {
+    const schema = User.constructor.options.schema
+  },
   async signin(req, res) {
     const { email, password } = req.body
     try {
