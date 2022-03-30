@@ -2,15 +2,25 @@ import bcrypt from 'bcrypt'
 import { User } from '../models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
+import modelToInput from '../utils/modelToInput.utils'
 import jwt from 'jsonwebtoken'
 
 module.exports = {
-  async schema(req, res) {
-    const schema = User.constructor.options.schema
+  async create(req, res) {
+    try {
+      const {email, password} = await User.describe()
+      const schema = modelToInput({email, password})
+
+      return res.status(200).json({ state: 'Success', schema })
+      
+    } catch (error) {
+    }
   },
   async signin(req, res) {
     const { email, password } = req.body
     try {
+      //validate fields
+      await User.validate({email, password}).catch(err => err)
 
       // get user credentials
       const { password: userpass, nickname, id } = await User.findOne({
@@ -43,6 +53,7 @@ module.exports = {
     try {
 
       // check that email
+
       const userExists = await User.findOne({
         where: {
           email

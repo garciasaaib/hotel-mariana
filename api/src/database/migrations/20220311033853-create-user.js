@@ -14,11 +14,37 @@ module.exports = {
       },
       email: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
+        comment: 'Email Address',
+        validate: {
+          isEmail: {
+            msg: 'Please enter a valid email'
+          },
+          notNull: {
+            args: true,
+            msg: "Required"
+          },
+        }
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'Password',
+        validate: {
+          min: {
+            args: 8,
+            msg: "Must be 8 or more characters"
+          },
+          notNull: {
+            args: true,
+            msg: "Required"
+          },
+          isAlphanumeric: {
+            args: true,
+            msg: "At last 1 number & 1 letter"
+          },
+        }
       },
       nickname: {
         // allowNull: false,

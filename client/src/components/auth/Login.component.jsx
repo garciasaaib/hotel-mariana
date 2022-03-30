@@ -24,11 +24,10 @@ export default class Login extends Component {
         {
           label: "Email Address",
           name: "email",
-          error: [],
           type: "email",
           validate: (data) => {
             if (data === undefined || data === "") return "Required"
-            if (!(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(data))) return "Must be a valid email"
+            if (!(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(data))) return 
             return ''
           }
         },
@@ -48,17 +47,24 @@ export default class Login extends Component {
         email: '',
         password: ''
       }
-      // values: {
-      //   email: "",
-      //   password: ""
-      // }
     }
+  
+  
+  
+  
+  
+  
   }
   // handleChange = (e) => {
   //   const { name, value } = e.target
   //   const { values } = this.state
   //   this.setState({ values: { ...values, [name]: value } })
   // }
+
+  componentDidMount = () => {
+    fetch("http://localhost:3001/api/v1/auth/create").then(res => console.log(res.json()))
+
+  }
   handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -75,7 +81,7 @@ export default class Login extends Component {
       const input = formData[name]
       const validation = validate(input)
       error[name] = validation
-      if (validation) return validation
+      return validation
     })
     this.setState({ error })
 
@@ -109,7 +115,6 @@ export default class Login extends Component {
   cleanError = (e) => {
     const {name} = e.target
     const error = this.state.error
-
     this.setState({error: {...error, [name]: ''}})
   }
 

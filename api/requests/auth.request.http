@@ -1,9 +1,12 @@
+@api = http://localhost:3002/api/v1/auth
+
+
 ###
-GET http://localhost:3000/api/v1/auth/signin/eyk HTTP/1.1
+GET {{api}}/signin/eyk HTTP/1.1
 
 
 ### verify token
-POST http://localhost:3001/api/v1/auth/verify HTTP/1.1
+POST {{api}}/verify HTTP/1.1
 content-type: application/json
 
 {
@@ -11,10 +14,10 @@ content-type: application/json
 }
 
 ### get signin metadata
-GET http://localhost:3000/api/v1/auth/signin HTTP/1.1
+GET {{api}}/create HTTP/1.1
 
 ### signin
-POST http://localhost:3001/api/v1/auth/signin HTTP/1.1
+POST {{api}}/signin HTTP/1.1
 content-type: application/json
 
 {
@@ -23,7 +26,7 @@ content-type: application/json
 }
 
 ### signup
-POST http://localhost:3000/api/v1/auth/signup HTTP/1.1
+POST {{api}}/signup HTTP/1.1
 content-type: application/json
 
 {
