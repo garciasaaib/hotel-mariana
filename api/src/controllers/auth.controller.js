@@ -3,24 +3,23 @@ import { User } from '../models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
 import modelToInput from '../utils/modelToInput.utils'
-import jwt from 'jsonwebtoken'
+import next from '../middlewares/errorHandler'
 
 module.exports = {
   async create(req, res) {
     try {
       const {email, password} = await User.describe()
-      const schema = modelToInput({email, password})
+      const data = modelToInput({email, password})
 
-      return res.status(200).json({ state: 'Success', schema })
-      
-    } catch (error) {
-    }
+      // response
+      next.success(req, res, data, 200)
+    } catch (error) { next.error(req, res, error.message, 500) }
   },
   async signin(req, res) {
     const { email, password } = req.body
     try {
       //validate fields
-      await User.validate({email, password}).catch(err => err)
+      // await User.validate({email, password}).catch(err => err)
 
       // get user credentials
       const { password: userpass, nickname, id } = await User.findOne({
@@ -41,11 +40,10 @@ module.exports = {
         nickname,
       })
 
+
       // response
-      return res.status(200).json({ state: 'Success', data: {token, id, nickname, email} })
-    } catch (error) {
-      return res.status(400).json({ error, message: "Wrong redentials" })
-    }
+      next.success(req, res, {token, id, nickname, email}, 200)
+    } catch (error) { next.error(req, res, error.message, 500) }
   },
   async signup(req, res) {
     let { email, password } = req.body
@@ -59,7 +57,7 @@ module.exports = {
           email
         }
       })
-      if (userExists) throw new Error("This email has been taken.")
+      if (userExists) throw new Error({message:"This email has been taken."})
 
       // create newUser
       password = await bcrypt.hash(password, Number.parseInt(authConfig.rounds));
@@ -74,8 +72,9 @@ module.exports = {
         nickname: user.nickname,
         email: user.email
       })
-      return res.status(200).json({ state: 'Success', data: {token, id, nickname, email} })
-    } catch (error) { res.status(400).json({ state: 'Error', message: "wrong data" }) }
+      next.success(req, res, {token, id, nickname, email}, 200)
+
+    } catch (error) { next.error(req, res, error.message, 500) }
   },
   async verify(req, res) {
     let token
