@@ -1,3 +1,6 @@
+// setting enviroment
+// `Ctrl + Shift + P`, & write `Rest Client: Switch Environment`
+
 {
   "rest-client.environmentVariables": {
     "$shared": {
@@ -7,7 +10,7 @@
     },
     "local": {
       "baseUrl": "http://localhost",
-      "port": ":3002",
+      "port": ":3001",
       "version": "v1",
       "token": "{{$shared nonProdToken}}"
     },

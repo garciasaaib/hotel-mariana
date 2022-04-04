@@ -1,13 +1,15 @@
 import express from "express";
-import middleWares from "./middlewares";
-import routes from "./routes";
+import {middlewares, responseHandler} from "./middlewares";
 import routerApi from "./routes";
+
 const app = express();
 
-app.use(middleWares);
+app.use(middlewares);
 
-// app.use('/api/v1', routes);
 routerApi(app);
+
+// app.use(responseHandler);
+
 
 // app.use('/api-docs', swaggerUi.setup(swaggerDocument));
 export default app;
