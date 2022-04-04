@@ -2,37 +2,50 @@ import bcrypt from 'bcrypt'
 import { User } from '../models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
-import jwt from 'jsonwebtoken'
+import modelToInput from '../utils/modelToInput.utils'
+import next from '../middlewares/errorHandler'
 
 module.exports = {
-  async signin(req, res) {
-    const { email, password } = req.body
+  async create(req, res) {
     try {
+      // get schema from User
+      const { email, password } = await User.describe()
+      const data = modelToInput({ email, password })
 
-      // get user credentials
-      const { password: userpass, nickname, id } = await User.findOne({
+      // response
+      next.success(req, res, data, 200)
+    } catch (error) { next.error(req, res, error.message, 500) }
+  },
+  async signin(req, res) {
+    let { email, password: pass } = req.body
+    let data = {}
+    try {
+      // validate data
+
+      // find user by email
+      const user = await User.findOne({
         where: {
-          email
+          email: email
         },
         attributes: ["password", "nickname"]
       })
+      const { password, nickname } = user
 
-      // validate password
-      const validatedPassword = bcrypt.compareSync(password, userpass)
-      if (!validatedPassword) throw new Error('Data do not fix')
+      // compare password
+      console.log(password, pass);
+      const match = await bcrypt.compare(pass, password)
+      if (!match) throw new Error('Data do not fix')
 
       // create token
       const token = await tokenUtil.create({
-        id,
         email,
         nickname,
       })
+      data = { nickname, email, token }
 
       // response
-      return res.status(200).json({ state: 'Success', data: {token, id, nickname, email} })
-    } catch (error) {
-      return res.status(400).json({ error, message: "Wrong redentials" })
-    }
+      next.success(req, res, data, 200)
+    } catch (error) { next.error(req, res, error.message, 500) }
   },
   async signup(req, res) {
     let { email, password } = req.body
@@ -44,8 +57,8 @@ module.exports = {
         where: {
           email
         }
-      })
-      if (userExists) throw new Error("This email has been taken.")
+      }).catch(err => {throw new Error({ message: "This email has been taken." })})
+      // if (userExists) throw new Error()
 
       // create newUser
       password = await bcrypt.hash(password, Number.parseInt(authConfig.rounds));
@@ -54,21 +67,26 @@ module.exports = {
         password, nickname, email
       })
 
+      // create
+      console.log(user);
+
       // generate token
       const token = await tokenUtil.create({
         id: user.id,
         nickname: user.nickname,
         email: user.email
       })
-      return res.status(200).json({ state: 'Success', data: {token, id, nickname, email} })
-    } catch (error) { res.status(400).json({ state: 'Error', message: "wrong data" }) }
+
+      // responses
+      next.success(req, res, { token, id, nickname, email }, 200)
+    } catch (error) { next.error(req, res, error.message, 500) }
   },
   async verify(req, res) {
     let token
     req.hasOwnProperty('method')
       ? token = req.body.token
       : token = req.params.token
-      console.log(token);
+    console.log(token);
     // try {
     //   await jwt.verify(token, authConfig.secret)
     //   return res.status(200).send({ status: "ok", message: "token ok" })

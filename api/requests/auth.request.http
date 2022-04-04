@@ -1,18 +1,18 @@
-###
-GET http://localhost:3000/api/v1/auth/varify/eyk HTTP/1.1
+@api = http://localhost:3003/api/v1/auth
 
-
-###
-POST http://localhost:3000/api/v1/auth/verify HTTP/1.1
+### verify token
+POST {{api}}/verify HTTP/1.1
 content-type: application/json
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYXNhYWliQGdtYWlsLmNvbSIsIm5pY2tuYW1lIjoiZ2FyY2lhc2FhaWIiLCJhY2Nlc3MiOnRydWUsImlhdCI6MTY0ODQ0MTIzOSwiZXhwIjoxNjQ4NTI3NjM5fQ.i_LJGJXc1qmy_mvc7S8JqmIsTmOYVcf38iOju9WCAmk"
 }
 
+### get signin metadata
+GET {{api}}/create HTTP/1.1
 
 ### signin
-POST http://localhost:3001/api/v1/auth/signin HTTP/1.1
+POST {{api}}/signin HTTP/1.1
 content-type: application/json
 
 {
@@ -21,10 +21,10 @@ content-type: application/json
 }
 
 ### signup
-POST http://localhost:3000/api/v1/auth/signup HTTP/1.1
+POST {{api}}/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "garciayaaissss@gmail.com",
-    "password": "garciasaaib"
+    "email": "garciasaaib@gmail.com",
+    "password": "garciasaaib1"
 }
