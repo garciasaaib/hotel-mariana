@@ -1,16 +1,15 @@
 'use strict';
-const bcrypt = require('bcrypt');
-const authConfig = require('../../config/auth')
+// const bcrypt = require('bcrypt');
+// const authConfig = require('../../config/auth')
+const { hashPass } = require('../../utils/bcryptMethods')
+
 module.exports = {
   async up(queryInterface, Sequelize) {
+    // for employees
     await queryInterface.bulkInsert('positions', [
       { name: 'manager' },
       { name: 'receptionist' }
     ], {});
-    async function hashPass(str) {
-      const password1 = await bcrypt.hashSync(str, Number.parseInt(authConfig.rounds))
-      return password1
-    }
     await queryInterface.bulkInsert('users', [
       {
         email: "garciasaaib@gmail.com",
@@ -51,7 +50,6 @@ module.exports = {
         email: "angelramirez@gmail.com",
         firstname: "Angel",
         password: await hashPass("angelramirez"),
-        // password: "angelramirez",
         nickname: "angelramirez",
         lastname: "Ramirez",
         secondlastname: "Chan",
@@ -59,6 +57,7 @@ module.exports = {
         identification_code: "ANCHAN465321",
         phone: 6631145982,
       },
+
     ], {});
 
     await queryInterface.bulkInsert('employees', [
@@ -83,11 +82,33 @@ module.exports = {
         is_active: true,
       },
     ], {});
+
+
+    // for clients
+    // 1. Only auth client
+    // 2. Fulfilled client
+    // 3. Middlefilled client
+    await queryInterface.bulkInsert('client_types', [
+      { level: "1", description: 'First time client' },
+      { level: "2", description: 'Second to fourth time client' },
+      { level: "3", description: 'Fifth to 20th times client' },
+      { level: "4", description: 'More than 20 times client' }
+    ], {});
+    await queryInterface.bulkInsert('users', [
+      {
+        email: "adranuz@gmail.com",
+        password: await hashPass("adranuz"),
+      },
+    ])
+
+
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('employees', null, {});
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('positions', null, {});
+    await queryInterface.bulkDelete('client_types', null, {});
+
   }
 };

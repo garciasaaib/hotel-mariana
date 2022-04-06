@@ -8,11 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      level: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       id_survey: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "surveys",
+          key: "id"
+        },
       },
       createdAt: {
         type: Sequelize.DATE,

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Client.hasOne(models.Client_type, { as: 'id_client_type'})
     }
   }
   Client.init({

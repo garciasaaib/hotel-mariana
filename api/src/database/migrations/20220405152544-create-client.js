@@ -9,16 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_user: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "users",
+          key: "id"
+        },
       },
       is_discount_survey: {
         type: Sequelize.BOOLEAN
       },
       id_client_type: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "client_types",
+          key: "id"
+        },
       },
       sign: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         type: Sequelize.DATE,
