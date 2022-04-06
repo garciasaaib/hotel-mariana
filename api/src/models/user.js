@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.BIGINT,
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'user',
     timestamps: false,
     schema: 'public'
   });

@@ -16,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: "id_room_type"
       // })
       // Room_type.belongsTo(models.Room)
-      Room_photo.hasOne(models.Room_type, {})
+      Room_photo.hasOne(models.Room_type, { as: 'id_room_type'})
     }
   }
   Room_photo.init({
     image_url: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Room_photo',
+    modelName: 'room_photo',
   });
   return Room_photo;
 };

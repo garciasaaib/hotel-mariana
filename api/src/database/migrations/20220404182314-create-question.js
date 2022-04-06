@@ -1,29 +1,21 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('rooms', {
+    await queryInterface.createTable('questions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      roof: {
+      content: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
-      is_available: {
+      type: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
-      },
-      id_room_type: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          // model: "room_types",
-          model: "room_types",
-          key: "id"
-        },
+        type: Sequelize.ENUM('text', 'checkbox', 'range', 'binnary'),
+        defaultValue: 'text'
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -38,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('rooms');
+    await queryInterface.dropTable('questions');
   }
 };

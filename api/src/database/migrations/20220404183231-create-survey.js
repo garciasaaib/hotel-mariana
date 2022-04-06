@@ -1,29 +1,16 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('rooms', {
+    await queryInterface.createTable('surveys', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      roof: {
+      name: {
         allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      is_available: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
-      },
-      id_room_type: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          // model: "room_types",
-          model: "room_types",
-          key: "id"
-        },
+        type: Sequelize.STRING
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -38,6 +25,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('rooms');
+    // await queryInterface.dropTable('survey_question');
+    await queryInterface.dropTable('surveys');
   }
 };

@@ -1,15 +1,16 @@
 'use strict';
 
+
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    await queryInterface.bulkInsert('Room_types', [
+    await queryInterface.bulkInsert('room_types', [
       { name: 'simple', price: 1000, max_guest: 10 },
       { name: 'junior', price: 2500, max_guest: 10 },
       { name: 'suite', price: 6000, max_guest: 10 }
     ], {});
 
-    await queryInterface.bulkInsert('Room_photos', [
+    await queryInterface.bulkInsert('room_photos', [
       { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
       { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
       { image_url: "https://bit.ly/3sZrYAN", id_room_type: 3 },
@@ -44,7 +45,7 @@ module.exports = {
       { image_url: "https://bit.ly/3sZoxtV", id_room_type: 2 }
     ], {});
 
-    await queryInterface.bulkInsert('Rooms', [
+    await queryInterface.bulkInsert('rooms', [
       { id_room_type: 1, roof: 1, is_available: true },
       { id_room_type: 1, roof: 1, is_available: true },
       { id_room_type: 1, roof: 1, is_available: true },
@@ -153,8 +154,8 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Rooms', null, {});
-    await queryInterface.bulkDelete('Room_photos', null, {});
-    await queryInterface.bulkDelete('Room_types', null, {});
+    await queryInterface.bulkDelete('rooms', null, {});
+    await queryInterface.bulkDelete('room_photos', null, {});
+    await queryInterface.bulkDelete('room_types', null, {});
   }
 };

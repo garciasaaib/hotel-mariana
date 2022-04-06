@@ -1,10 +1,11 @@
 import express from "express";
-import {middlewares, responseHandler} from "./middlewares";
+// import {middleWares, responseHandler} from "./middlewares";
+import middleWares from "./middlewares";
 import routerApi from "./routes";
 
 const app = express();
 
-app.use(middlewares);
+app.use(middleWares);
 
 routerApi(app);
 

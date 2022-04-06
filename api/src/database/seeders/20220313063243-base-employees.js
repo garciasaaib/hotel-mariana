@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const authConfig = require('../../config/auth')
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Positions', [
+    await queryInterface.bulkInsert('positions', [
       { name: 'manager' },
       { name: 'receptionist' }
     ], {});
@@ -11,7 +11,7 @@ module.exports = {
       const password1 = await bcrypt.hashSync(str, Number.parseInt(authConfig.rounds))
       return password1
     }
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert('users', [
       {
         email: "garciasaaib@gmail.com",
         firstname: "Adrian",
@@ -61,7 +61,7 @@ module.exports = {
       },
     ], {});
 
-    await queryInterface.bulkInsert('Employees', [
+    await queryInterface.bulkInsert('employees', [
       {
         id_position: 1,
         id_user: 1,
@@ -86,11 +86,8 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('employees', null, {});
+    await queryInterface.bulkDelete('users', null, {});
+    await queryInterface.bulkDelete('positions', null, {});
   }
 };

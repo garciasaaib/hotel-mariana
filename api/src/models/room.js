@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      Room.hasOne(models.Room_type)
+      Room.hasOne(models.Room_type, { as: 'id_room'})
     }
   }
   Room.init({
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     is_available: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'Room',
+    modelName: 'room',
   });
   return Room;
 };
