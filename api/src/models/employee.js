@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     id_user: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'employee',
+    tableName: 'employees',
+    modelName: 'Employee',
   });
   return Employee;
 };

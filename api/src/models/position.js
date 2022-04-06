@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     nema: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'position',
+    tableName: 'positions',
+    modelName: 'Position',
   });
   return Position;
 };

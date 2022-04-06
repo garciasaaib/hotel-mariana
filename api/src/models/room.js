@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({Room_type}) {
       // define association here
 
-      Room.hasOne(models.Room_type, { as: 'id_room'})
+      this.hasOne(Room_type, { foreignKey: 'id_room', as: 'type' })
     }
   }
   Room.init({
@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     is_available: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'room',
+    modelName: 'Room',
+    tableName: 'rooms'
+
   });
   return Room;
 };

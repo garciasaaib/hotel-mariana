@@ -28,8 +28,8 @@ router.use('/docs', async (req, res, next) =>{
 },swaggerUi.serve, swaggerUi.setup());
 
 // normal routes
-router.use('/employee', employeeRouter)
-router.use('/room', roomRouter)
-router.use('/auth', authRouter)
+// router.use('/employee', employeeRouter)
+router.use('/rooms', roomRouter)
+// router.use('/auth', authRouter)
 
 }

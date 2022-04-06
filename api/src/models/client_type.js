@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     id_survey: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'client_type',
+    modelName: 'Client_type',
+    tableName: 'client_types',
     timestamps: false
   });
   return Client_type;

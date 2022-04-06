@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.ENUM('text', 'checkbox', 'range', 'binnary')
   }, {
     sequelize,
-    modelName: 'question',
+    tableName: 'Question',
+    modelName: 'questions',
   });
   return Question;
 };

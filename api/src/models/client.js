@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     sign: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'client',
+    modelName: 'Client',
+    tableName: 'clients',
   });
   return Client;
 };

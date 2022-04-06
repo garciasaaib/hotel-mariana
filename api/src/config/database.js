@@ -2,7 +2,7 @@ require('dotenv/config')
 const { DB_PORT, DB_HOST, DB_NAME, DB_PASS, DB_USER } = process.env
 
 module.exports = {
-  // development: {
+  development: {
 
     username: DB_USER || "postgres",
     password: DB_PASS || "admin",
@@ -21,6 +21,6 @@ module.exports = {
 
     // logs
     logging: false
-  // }
+  }
 
 }
