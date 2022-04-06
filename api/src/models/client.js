@@ -12,12 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Client.hasOne(models.Client_type, { as: 'id_client_type'})
+      Client.hasOne(models.User, { as: 'id_user'})
     }
   }
   Client.init({
-    id_user: DataTypes.INTEGER,
+    // id_user: DataTypes.INTEGER,
     is_discount_survey: DataTypes.BOOLEAN,
-    id_client_type: DataTypes.INTEGER,
+    // id_client_type: DataTypes.INTEGER,
     sign: DataTypes.INTEGER
   }, {
     sequelize,

@@ -1,8 +1,5 @@
 'use strict';
-// const bcrypt = require('bcrypt');
-// const authConfig = require('../../config/auth')
 const { hashPass } = require('../../utils/bcryptMethods')
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     // for employees
@@ -16,7 +13,7 @@ module.exports = {
         firstname: "Adrian",
         password: await hashPass("garciasaaib"),
         // password: "garciasaaib",
-        nickname: "garciasaaib",
+        username: "garciasaaib",
         lastname: "Garcia",
         secondlastname: "Saaib",
         identification_name: "INE",
@@ -27,7 +24,7 @@ module.exports = {
         email: "sandino_varela@gmail.com",
         firstname: "Sandino",
         password: await hashPass("sandino_varela"),
-        nickname: "sandino_varela",
+        username: "sandino_varela",
         lastname: "Varela",
         secondlastname: "Lopez",
         identification_name: "INE",
@@ -38,8 +35,7 @@ module.exports = {
         email: "santiagohibarra@gmail.com",
         firstname: "Santiago",
         password: await hashPass("santiagohibarra"),
-        // password: "santiagohibarra",
-        nickname: "santiagohibarra",
+        username: "santiagohibarra",
         lastname: "Hernandez",
         secondlastname: "Ibarra",
         identification_name: "INE",
@@ -50,7 +46,7 @@ module.exports = {
         email: "angelramirez@gmail.com",
         firstname: "Angel",
         password: await hashPass("angelramirez"),
-        nickname: "angelramirez",
+        username: "angelramirez",
         lastname: "Ramirez",
         secondlastname: "Chan",
         identification_name: "INE",
@@ -98,13 +94,28 @@ module.exports = {
       {
         email: "adranuz@gmail.com",
         password: await hashPass("adranuz"),
+        username: "adranuz",
+      },
+      {
+        email: "adranuz1@gmail.com",
+        firstname: "adranuz1",
+        password: await hashPass("adranuz1"),
+        username: "adranuz1",
+        lastname: "adranuz1",
+        secondlastname: "adranuz1",
+        identification_name: "INE",
+        identification_code: "GASA94546",
+        phone: 3111145983,
       },
     ])
-
-
+    await queryInterface.bulkInsert('clients', [
+      { id_user: 5, id_client_type: 1 },
+      { id_user: 6, id_client_type: 1 },
+    ], {});
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('clients', null, {});
     await queryInterface.bulkDelete('employees', null, {});
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('positions', null, {});

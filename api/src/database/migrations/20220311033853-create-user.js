@@ -46,7 +46,7 @@ module.exports = {
           },
         }
       },
-      nickname: {
+      username: {
         // allowNull: false,
         type: Sequelize.STRING
       },

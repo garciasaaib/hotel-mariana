@@ -16,20 +16,23 @@ module.exports = {
           key: "id"
         },
       },
-      is_discount_survey: {
-        type: Sequelize.BOOLEAN
-      },
       id_client_type: {
-        type: Sequelize.INTEGER,
         allowNull: false,
+        type: Sequelize.INTEGER,
         references: {
           model: "client_types",
           key: "id"
         },
       },
+      is_discount_survey: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       sign: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        defaultValue: 1234,
       },
       createdAt: {
         type: Sequelize.DATE,

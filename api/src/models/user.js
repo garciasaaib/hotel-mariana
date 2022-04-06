@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     firstname: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    nickname: DataTypes.STRING,
+    username: DataTypes.STRING,
     lastname: DataTypes.STRING,
     secondlastname: DataTypes.STRING,
     identification_name: DataTypes.STRING,
@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
     timestamps: false,
-    schema: 'public'
   });
   return User;
 };
