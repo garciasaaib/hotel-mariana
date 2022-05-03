@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Login from '../auth/Login.component'
+import Login from '../pages/Login.page'
 import { ReactSession } from 'react-client-session';
 
 export default class Profile extends Component {

@@ -1,12 +1,13 @@
 // components
 import { Component } from 'react'
-import Profile from './components/pages/Profile.component'
 // styles
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container } from '@mui/material'
 import { CssBaseline } from '@mui/material';
+import Router from './router'
 
-const theme = createTheme()
+
+const theme = createTheme('black')
 
 export default class App extends Component {
   render() {
@@ -14,11 +15,9 @@ export default class App extends Component {
       <ThemeProvider theme={theme} className="App">
       <Container  >
         <CssBaseline />
-        <Profile />
+        <Router/>
       </Container>
     </ThemeProvider>
     )
   }
 }
-
-
