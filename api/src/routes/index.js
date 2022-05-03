@@ -3,7 +3,7 @@ import { Router } from "express";
 
 import employeeRouter from './employee.router'
 import authRouter from './auth.router'
-import roomRouter from './room.router'
+import roomRouter from './room'
 
 
 
@@ -18,18 +18,18 @@ export default (app) => {
 
   // versions
   app.use('/api/v1/', router)
-  
 
-// docs routes
-router.use('/docs', async (req, res, next) =>{
-  swaggerDocument.host = req.get('host')
-  req.swaggerDoc = swaggerDocument;
-  next()
-},swaggerUi.serve, swaggerUi.setup());
 
-// normal routes
-// router.use('/employee', employeeRouter)
-router.use('/rooms', roomRouter)
-// router.use('/auth', authRouter)
+  // docs routes
+  router.use('/docs', async (req, res, next) => {
+    swaggerDocument.host = req.get('host')
+    req.swaggerDoc = swaggerDocument;
+    next()
+  }, swaggerUi.serve, swaggerUi.setup());
+
+  // normal routes
+  // router.use('/employee', employeeRouter)
+  router.use('/room', roomRouter)
+  // router.use('/auth', authRouter)
 
 }

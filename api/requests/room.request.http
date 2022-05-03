@@ -1,8 +1,8 @@
 ### vars
-# @enpoint = http://localhost:3001/api/v1/info
+@endpoint = http://localhost:3001/api/v1/room
+# @api = {{baseUrl}}{{port}}/api/{{version}}
+# @endpoint = {{api}}/rooms
 
-@api = {{baseUrl}}{{port}}/api/{{version}}
-@endpoint = {{api}}/rooms
 
 
 ### get client show all

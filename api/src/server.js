@@ -1,7 +1,5 @@
 import express from "express";
-import {middleWares,
-  // responseHandler
-} from "./middlewares/index";
+import { middleWares } from "./middlewares/index";
 import { logErrors, errorHandler, boomErrorHandler, ormErrorHandler} from './middlewares/errorHandler/errorHandlers'
 
 import routerApi from "./routes";

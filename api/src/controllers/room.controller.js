@@ -5,19 +5,20 @@ import options from '../utils/sequelizeOptions'
 export default {
   async index(req, res, next) {
     try {
-      const path = req.path.slice(1) || false
-      const { page = 0 } = req.query;
+      const { page } = req.query;
+      // const optionsPagination = await options.pagination(page)
+      // let roomList = await Room.findAndCountAll({
+      //   ...optionsPagination
+      // })
 
-      let roomList
-      if (path === 'types') roomList = await Room_type.findAll()
-      else {
-        const optionsPagination = await options.pagination(page)
-        roomList = await Room.findAndCountAll({
-          ...optionsPagination
-        })
-      }
+      let roomList = await Room.findAll()
+      res.status(200).json({ roomList }) 
+    } catch (error) { next(error) }
+  },
+  async type(req, res, next) {
+    try {
+      let roomList = await Room_type.findAll()
       res.status(200).json({ roomList })
-
     } catch (error) { next(error) }
   },
   // create(req, res) {},
