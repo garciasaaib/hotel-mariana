@@ -9,8 +9,6 @@ import {
   TextField,
   Box,
   Button,
-  Grid,
-  Link,
   Avatar,
   Typography,
 } from '@mui/material'
@@ -18,12 +16,12 @@ import {
 export default function ForgotPassword() {
   const navigate = useNavigate()
   const [finished, setFinished] = React.useState(false)
-  const field = fields.forgotpassword
+  const field = fields.newpassword
   const formik = useFormik({
     initialValues: {
-      email: '',
+      newpassword: '',
     },
-    validationSchema: schema.forgotpassword,
+    validationSchema: schema.newpassword,
     onSubmit: (values) => {
       setFinished(true)
       console.log(values)
@@ -43,7 +41,7 @@ export default function ForgotPassword() {
         <AccessAlarm />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Recover Password
+        New Password
       </Typography>
       <Box
         component="form"
@@ -59,16 +57,11 @@ export default function ForgotPassword() {
           margin="normal"
           required
           fullWidth
-          value={formik.values.email}
+          value={formik.values.newpassword}
           onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          error={formik.touched.newpassword && Boolean(formik.errors.newpassword)}
+          helperText={formik.touched.newpassword && formik.errors.newpassword}
         />
-        {finished &&
-          <Typography component="p" variant="p">
-            Check your email to reset your account
-          </Typography>
-        }
         <Button
           disabled={finished ? true : false}
           type="submit"
@@ -77,14 +70,7 @@ export default function ForgotPassword() {
           fullWidth
           sx={{ mt: 3, mb: 2 }}
           color="secondary"
-        >Send Email</Button>
-        <Grid container>
-          <Grid item>
-            <Link onClick={() => navigate('/login')} color="secondary" variant="body2">
-              {"Return to login"}
-            </Link>
-          </Grid>
-        </Grid>
+        >Set New Password</Button>
       </Box>
     </Box>
   )

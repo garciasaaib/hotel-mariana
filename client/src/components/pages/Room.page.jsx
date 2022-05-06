@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Room extends Component {
-  render() {
+export default function Room() {
     return (
       <div>Room</div>
     )
-  }
 }

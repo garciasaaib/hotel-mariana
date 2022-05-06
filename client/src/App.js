@@ -7,17 +7,24 @@ import { CssBaseline } from '@mui/material';
 import Router from './router'
 
 
-const theme = createTheme('black')
+const theme = createTheme({
+  theme: "dark",
+  components: {
+    MuiTextField: {
+      defaultProps: {
+        variant: 'standard'
+      },
+    },
+  },
+})
 
 export default class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme} className="App">
-      <Container  >
+      <ThemeProvider theme={theme} >
         <CssBaseline />
-        <Router/>
-      </Container>
-    </ThemeProvider>
+        <Router />
+      </ThemeProvider>
     )
   }
 }

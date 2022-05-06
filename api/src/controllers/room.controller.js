@@ -11,7 +11,11 @@ export default {
       //   ...optionsPagination
       // })
 
-      let roomList = await Room.findAll()
+      let roomList = await Room.findAndCountAll({
+        include: [
+          {model: Room_type, as: "type"}
+        ]
+      })
       res.status(200).json({ roomList }) 
     } catch (error) { next(error) }
   },

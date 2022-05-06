@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      Room.hasOne(models.Room_type, { foreignKey: 'id_room_type' })
+      Room.hasOne(models.Room_type, { foreignKey: 'id_room_type', primaryKey: "id", as: "type"})
     }
   }
   Room.init({

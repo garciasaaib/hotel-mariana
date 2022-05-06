@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Pricing from '../common/Pricing'
+import Categories from '../common/Categories'
+import Hero from '../common/Hero'
 
 
-export default class Landing extends React.Component {
-  render() {
-    return (
-      <div>
-        <Pricing />
-      </div>
-    )
-  }
+export default function Landing() {
+  return (
+    <>
+      <Hero />
+      <Categories />
+      <Pricing />
+    </>
+  )
 }
