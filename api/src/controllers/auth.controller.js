@@ -9,34 +9,22 @@ module.exports = {
   async create(req, res, next) {
     try {
       const { email, password, firstname, lastname, secondlastname } = await User.describe()
-      req.body = modelToInput({ email, password, firstname, lastname, secondlastname  })
-      req.message = "Request successfuly done."
-      req.status = 202
+      req.body = modelToInput({ email, password, firstname, lastname, secondlastname })
       next()
     } catch (error) { next(error) }
   },
 
 
-
-
-  
-  async signin(req, res) {
+  async signin(req, res, next) {
     let { email, password: pass } = req.body
     let data = {}
     try {
-      // validate data
 
-      // find user by email
-      const user = await User.findOne({
-        where: {
-          email: email
-        },
+      const { password, nickname } = await User.findOne({
+        where: { email },
         attributes: ["password", "nickname"]
       })
-      const { password, nickname } = user
-
-      // compare password
-      console.log(password, pass);
+      
       const match = await bcrypt.compare(pass, password)
       if (!match) throw new Error('Data do not fix')
 
@@ -48,9 +36,12 @@ module.exports = {
       data = { nickname, email, token }
 
       // response
-      next.success(req, res, data, 200)
-    } catch (error) { next.error(req, res, error.message, 500) }
+      next()
+    } catch (error) { next(error) }
   },
+
+
+
   async signup(req, res) {
     let { email, password } = req.body
 
@@ -61,7 +52,7 @@ module.exports = {
         where: {
           email
         }
-      }).catch(err => {throw new Error({ message: "This email has been taken." })})
+      }).catch(err => { throw new Error({ message: "This email has been taken." }) })
       // if (userExists) throw new Error()
 
       // create newUser

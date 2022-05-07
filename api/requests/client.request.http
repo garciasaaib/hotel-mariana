@@ -1,17 +1,30 @@
-@endpoint = http://localhost:3001/api/v1
+@api = http://localhost:3001/api/v1/client
 
+### verify token
+POST {{api}}/verify HTTP/1.1
+content-type: application/json
 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYXNhYWliQGdtYWlsLmNvbSIsIm5pY2tuYW1lIjoiZ2FyY2lhc2FhaWIiLCJhY2Nlc3MiOnRydWUsImlhdCI6MTY0ODQ0MTIzOSwiZXhwIjoxNjQ4NTI3NjM5fQ.i_LJGJXc1qmy_mvc7S8JqmIsTmOYVcf38iOju9WCAmk"
+}
 
-### Room list with the info to check if is avaiable or not & why
-GET http://localhost:3001/api/v1/token HTTP/1.1
+### get signin metadata
+GET {{api}}/create HTTP/1.1
 
-###
-POST http://localhost:3001/api/v1/login HTTP/1.1
+### signin
+POST {{api}}/signin HTTP/1.1
+content-type: application/json
 
-###
-GET http://localhost:3001/api/v1/login/token HTTP/1.1
+{
+    "email": "garciasaaib@gmail.com",
+    "password": "garciasaaib"
+}
 
+### signup
+POST {{api}}/signup HTTP/1.1
+content-type: application/json
 
-###
-GET http://localhost:3001/api/v1/login/validatetoken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJuYW1lIjoiYWRyaWFuIiwiYWNjZXNzIjp0cnVlLCJpYXQiOjE2NDgyMjY1NzMsImV4cCI6MTY0ODIyNjYzM30.q6liN1Sbuz1YmTt1CjMLlShiLLHrKIqjHTr_2IL-jJ8 HTTP/1.1
-
+{
+    "email": "garciasaaib@gmail.com",
+    "password": "garciasaaib1"
+}

@@ -1,37 +1,24 @@
 const modelToInput = (data) => Object.entries(data).map(([key, values]) => {
-    let { comment, type } = values;
-    let validate;
-
-    // manage key
-    type = ['email', 'password'].some((item) => item === 'email') ? key : 'text';
-
-    // manage validations
-    switch (key) {
-      case 'email':
-        validate = (value) => {
-          if (value === undefined || value === '') return 'Required';
-          if (!/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(value)) return;
-          return '';
-        };
-        break;
-      case 'password':
-        validate = (data) => {
-          if (data === undefined || data === '') return 'Required';
-          if (data.length < 8) return 'Must be 8 or more characters';
-          return '';
-        };
-        break;
-      default:
-        break;
-    }
-
-    // frontend values
-    return {
-      name: key,
-      label: comment,
-      type,
-      // validate,
-    }
-  })
-
+  let { comment, type } = values;
+  return {
+    name: key,
+    label: comment,
+    type: setType(key, type)
+  }
+})
 export default modelToInput
+
+
+// add new inputs if it is necessary
+function setType(key, type) {
+  switch (type) {
+    case 'CHARACTER VARYING(255)':
+      if (key === 'email') return type = 'email'
+      if (key === 'password') return type = 'password'
+      return type = 'text'
+    case 'BIGINT':
+      return type = 'number'
+    default:
+      return type = 'text'
+  }
+}

@@ -9,12 +9,12 @@ const app = express();
 app.use(middleWares);
 
 routerApi(app);
-app.use(next.success)
 
 app.use(logErrors);
-app.use(errorHandler);
 app.use(boomErrorHandler);
 app.use(ormErrorHandler);
+app.use(errorHandler);
+app.use(next.success)
 
 // app.use('/api-docs', swaggerUi.setup(swaggerDocument));
 export default app;

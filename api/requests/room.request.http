@@ -5,11 +5,14 @@
 
 
 
-### get client show all
+### show all rooms
 GET {{endpoint}} HTTP/1.1
 
 ### get client show all
 GET {{endpoint}}?page=3 HTTP/1.1
 
-### get client show info
+### show all room types
 GET {{endpoint}}/types HTTP/1.1
+
+### show details for one room type
+GET {{endpoint}}/types/5 HTTP/1.1

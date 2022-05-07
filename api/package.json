@@ -23,6 +23,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
+    "joi": "^17.6.0",
     "jsdoc": "^3.6.10",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -33,7 +34,8 @@
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",

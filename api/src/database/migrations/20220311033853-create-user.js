@@ -6,39 +6,48 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       firstname: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'First Name'
       },
       email: {
         allowNull: false,
         type: Sequelize.STRING,
+        comment: 'Email Address',
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING,
+        comment: 'Password',
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'User Name'
       },
       lastname: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'Last Name'
       },
       secondlastname: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'Second Lastname'
       },
       identification_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'ID Card Name'
       },
       identification_code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'ID Card Code'
       },
       phone: {
-        type: Sequelize.BIGINT
+        type: Sequelize.BIGINT,
+        comment: 'Cellphone Number'
       },
       createdAt: {
         type: Sequelize.DATE,
