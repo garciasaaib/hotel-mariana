@@ -1,8 +1,12 @@
+@endpoint = http://localhost:3001/api/v1
+
+
+
 ### Room list with the info to check if is avaiable or not & why
 GET http://localhost:3001/api/v1/token HTTP/1.1
 
 ###
-GET http://localhost:3001/api/v1/login HTTP/1.1
+POST http://localhost:3001/api/v1/login HTTP/1.1
 
 ###
 GET http://localhost:3001/api/v1/login/token HTTP/1.1

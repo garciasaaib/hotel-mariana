@@ -3,19 +3,23 @@ import { User } from '../models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
 import modelToInput from '../utils/modelToInput.utils'
-import next from '../middlewares/errorHandler'
+// import next from '../middlewares/errorHandler'
 
 module.exports = {
-  async create(req, res) {
+  async create(req, res, next) {
     try {
-      // get schema from User
-      const { email, password } = await User.describe()
-      const data = modelToInput({ email, password })
-
-      // response
-      next.success(req, res, data, 200)
-    } catch (error) { next.error(req, res, error.message, 500) }
+      const { email, password, firstname, lastname, secondlastname } = await User.describe()
+      req.body = modelToInput({ email, password, firstname, lastname, secondlastname  })
+      req.message = "Request successfuly done."
+      req.status = 202
+      next()
+    } catch (error) { next(error) }
   },
+
+
+
+
+  
   async signin(req, res) {
     let { email, password: pass } = req.body
     let data = {}

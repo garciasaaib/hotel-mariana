@@ -6,25 +6,25 @@ export default {
   async index(req, res, next) {
     try {
       const { page = 0, amount = 10, sort, role, search } = req.query;
-      // const optionsPagination = await options.pagination(page)
-      // let roomList = await Room.findAndCountAll({
-      //   ...optionsPagination
-      // })
 
-      let {count, rows} = await Room.findAndCountAll({
-        where: {
-
+      let { count, rows } = await Room.findAndCountAll({
+        where: {},
+        include: {
+          model: RoomType,
+          attributes: {
+            exclude: ['createdAt', 'updatedAt']
+          }
         },
-        include: [
-          { model: RoomType }
-        ],
-        ...(await options.pageLimit(page, amount, sort))
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+        ...(options.pageLimit(page, amount, sort)),
       })
-      const pagination = await options.paginate(count, page, amount)
-      const response = { ...pagination, count, page, rows }
+      const pagination = options.paginate(count, page, amount)
+      req.body = { ...pagination, count, page, rows }
 
 
-      res.status(200).json({ response })
+      next()
     } catch (error) { next(error) }
   },
 
@@ -32,13 +32,24 @@ export default {
 
   async type(req, res, next) {
     try {
-      let response = await RoomType.findAll({
-        include: [
-          { model: RoomPhoto },
-          { model: Room },
-        ]
+      req.body = await RoomType.findAll({
+        attributes: {
+          include: [[Sequelize.fn("COUNT", Sequelize.col("Rooms")), "Rooms_count"]] 
+        },
+        include: [{
+          model: RoomPhoto,
+          attributes: { exclude: ['createdAt', 'updatedAt']}
+        },
+        {
+          model: Room,
+          attributes: []
+        }],
+        group: ['RoomType.id', 'RoomPhotos.id']
+        // attributes: ['roomAmount', [sequelize.fn('sum', sequelize.col('Rooms')), 'total']],
+        // group: ['Rooms.id'],
+        // raw: true,
       })
-      res.status(200).json({ response })
+      next()
     } catch (error) { next(error) }
   },
   // create(req, res) {},

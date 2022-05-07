@@ -2,7 +2,7 @@ import { Router } from "express";
 
 
 import employeeRouter from './employee.router'
-import authRouter from './auth.router'
+import authRouter from './auth'
 import roomRouter from './room'
 
 
@@ -30,6 +30,6 @@ export default (app) => {
   // normal routes
   // router.use('/employee', employeeRouter)
   router.use('/rooms', roomRouter)
-  // router.use('/auth', authRouter)
+  router.use('/auth', authRouter)
 
 }

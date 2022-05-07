@@ -7,7 +7,7 @@ import {
 } from '../config/constants'
 
 export default {
-  async pageLimit (page = 0, amount=10, sort="") {
+  pageLimit (page = 0, amount=10, sort="") {
     let order = sort.toUpperCase()
     order === order === 'DESC' ? 'DESC': order === "ASC" ? "ASC" : null
     return {
@@ -16,7 +16,7 @@ export default {
       distinct: true
     }
   },
-  async paginate (rows, page = 0, amount=10){
+  paginate: (rows, page = 0, amount=10) =>{
     const max = (rows/amount)*1
     const next = page*1 + 1
     const prev = page*1 - 1
@@ -25,12 +25,15 @@ export default {
       prev: page ? prev : null
     }
   },
-  async filter (search, role) {
+  noTimestamps: {exclude: ['createdAt', 'updatedAt']},
+  filter (search, role) {
     let response = {}
     if(search) response.name = { [Op.iLike]: `%${search}%` }
     if(role) response.role = role
     return response
-  }
+  },
+
+
   // create(req, res) {},
   // store(req, res) {},
   // show(req, res) {},

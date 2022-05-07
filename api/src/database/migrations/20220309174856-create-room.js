@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       is_available: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.BOOLEAN
       },
       id_room_type: {
