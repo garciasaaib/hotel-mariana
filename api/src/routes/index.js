@@ -29,7 +29,7 @@ export default (app) => {
 
   // normal routes
   // router.use('/employee', employeeRouter)
-  router.use('/room', roomRouter)
+  router.use('/rooms', roomRouter)
   // router.use('/auth', authRouter)
 
 }

@@ -3,11 +3,11 @@ const { hashPass } = require('../../utils/bcryptMethods')
 module.exports = {
   async up(queryInterface, Sequelize) {
     // for employees
-    await queryInterface.bulkInsert('positions', [
+    await queryInterface.bulkInsert('Positions', [
       { name: 'manager' },
       { name: 'receptionist' }
     ], {});
-    await queryInterface.bulkInsert('users', [
+    await queryInterface.bulkInsert('Users', [
       {
         email: "garciasaaib@gmail.com",
         firstname: "Adrian",
@@ -56,7 +56,7 @@ module.exports = {
 
     ], {});
 
-    await queryInterface.bulkInsert('employees', [
+    await queryInterface.bulkInsert('Employees', [
       {
         id_position: 1,
         id_user: 1,
@@ -84,17 +84,20 @@ module.exports = {
     // 1. Only auth client
     // 2. Fulfilled client
     // 3. Middlefilled client
-    await queryInterface.bulkInsert('client_types', [
+    await queryInterface.bulkInsert('ClientTypes', [
       { level: "1", description: 'First time client' },
       { level: "2", description: 'Second to fourth time client' },
       { level: "3", description: 'Fifth to 20th times client' },
       { level: "4", description: 'More than 20 times client' }
     ], {});
-    await queryInterface.bulkInsert('users', [
+    await queryInterface.bulkInsert('Users', [
       {
         email: "adranuz@gmail.com",
         password: await hashPass("adranuz"),
-        username: "adranuz",
+        firstname: "adranuz2",
+        username: "adranuz2",
+        lastname: "adranuz2",
+        secondlastname: "adranuz2",
       },
       {
         email: "adranuz1@gmail.com",
@@ -108,18 +111,18 @@ module.exports = {
         phone: 3111145983,
       },
     ])
-    await queryInterface.bulkInsert('clients', [
+    await queryInterface.bulkInsert('Clients', [
       { id_user: 5, id_client_type: 1 },
       { id_user: 6, id_client_type: 1 },
     ], {});
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('clients', null, {});
-    await queryInterface.bulkDelete('employees', null, {});
-    await queryInterface.bulkDelete('users', null, {});
-    await queryInterface.bulkDelete('positions', null, {});
-    await queryInterface.bulkDelete('client_types', null, {});
+    await queryInterface.bulkDelete('Clients', null, {});
+    await queryInterface.bulkDelete('Employees', null, {});
+    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('Positions', null, {});
+    await queryInterface.bulkDelete('ClientTypes', null, {});
 
   }
 };

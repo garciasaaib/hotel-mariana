@@ -2,18 +2,15 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
-import {useNavigate} from 'react-router-dom';
 
 const backgroundImage =
   'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
 
 export default function ProductHero() {
-  const navigate = useNavigate()
   return (
 
     <ProductHeroLayout
       sxBackground={{
-        margin: 0,
         backgroundImage: `url(${backgroundImage})`,
         backgroundColor: '#7fc7d9', // Average color of the background image.
         backgroundPosition: 'center',
@@ -41,8 +38,8 @@ export default function ProductHero() {
         variant="contained"
         size="large"
         component="a"
+        href="/premium-themes/onepirate/sign-up/"
         sx={{ minWidth: 200 }}
-        onClick={() =>navigate('/register')}
       >
         Register
       </Button>

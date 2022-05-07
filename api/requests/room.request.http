@@ -1,5 +1,5 @@
 ### vars
-@endpoint = http://localhost:3001/api/v1/room
+@endpoint = http://localhost:3001/api/v1/rooms
 # @api = {{baseUrl}}{{port}}/api/{{version}}
 # @endpoint = {{api}}/rooms
 
@@ -9,7 +9,7 @@
 GET {{endpoint}} HTTP/1.1
 
 ### get client show all
-GET {{endpoint}}?page=0 HTTP/1.1
+GET {{endpoint}}?page=3 HTTP/1.1
 
 ### get client show info
 GET {{endpoint}}/types HTTP/1.1

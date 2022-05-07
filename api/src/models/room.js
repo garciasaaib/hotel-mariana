@@ -12,16 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      Room.hasOne(models.Room_type, { foreignKey: 'id_room_type', primaryKey: "id", as: "type"})
+      Room.belongsTo(models.RoomType, { foreignKey: 'id_room_type'})
     }
   }
   Room.init({
     roof: DataTypes.NUMBER,
-    is_available: DataTypes.BOOLEAN
+    is_available: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Room',
-    tableName: 'rooms'
 
   });
   return Room;
