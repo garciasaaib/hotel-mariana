@@ -15,4 +15,4 @@ GET {{endpoint}}?page=3 HTTP/1.1
 GET {{endpoint}}/types HTTP/1.1
 
 ### show details for one room type
-GET {{endpoint}}/types/5 HTTP/1.1
+GET {{endpoint}}/types/3 HTTP/1.1

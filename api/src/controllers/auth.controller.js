@@ -1,97 +1,69 @@
-import bcrypt from 'bcrypt'
-import { User } from '../models/index'
+import bcrypt from '../utils/bcryptMethods'
+import { User, Client } from '../models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
+import boom from '@hapi/boom'
 import modelToInput from '../utils/modelToInput.utils'
-// import next from '../middlewares/errorHandler'
+import clientController from './client.controller'
+
 
 module.exports = {
-  async create(req, res, next) {
-    try {
-      const { email, password, firstname, lastname, secondlastname } = await User.describe()
-      req.body = modelToInput({ email, password, firstname, lastname, secondlastname })
-      next()
-    } catch (error) { next(error) }
+  async create() {
+    const { email, password, firstname, lastname, secondlastname } = await User.describe()
+    return modelToInput({ email, password, firstname, lastname, secondlastname })
   },
 
 
-  async signin(req, res, next) {
-    let { email, password: pass } = req.body
-    let data = {}
-    try {
+  async login(body, role) {
+    // TODO: check that email
+    const user = await User.findOne({
+      where: { email: body.email },
+    })
+    if (!user) throw boom.badRequest('Password or email does not match: email')
 
-      const { password, nickname } = await User.findOne({
-        where: { email },
-        attributes: ["password", "nickname"]
-      })
-      
-      const match = await bcrypt.compare(pass, password)
-      if (!match) throw new Error('Data do not fix')
+    // TODO: verify password
+    const match = await bcrypt.verifyPassword(body.password, user.password);
+    if (!match) throw boom.badRequest('Password or email does not match')
 
-      // create token
-      const token = await tokenUtil.create({
-        email,
-        nickname,
-      })
-      data = { nickname, email, token }
-
-      // response
-      next()
-    } catch (error) { next(error) }
+    // TODO: generate token
+    const token = await tokenUtil.create({
+      id: user.id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      secondlastname: user.secondlastname,
+      email: user.email,
+      isValidEmail: user.isValidEmail,
+      isValidPhone: user.isValidPhone,
+      role: role,
+    })
+    return { token }
   },
 
 
+  async register(body) {
+    // TODO: Check if user exists
+    const userExists = await User.findOne({ where: { email: body.email } })
+    if (userExists) return userExists
 
-  async signup(req, res) {
-    let { email, password } = req.body
-
-    try {
-
-      // check that email
-      const userExists = await User.findOne({
-        where: {
-          email
-        }
-      }).catch(err => { throw new Error({ message: "This email has been taken." }) })
-      // if (userExists) throw new Error()
-
-      // create newUser
-      password = await bcrypt.hash(password, Number.parseInt(authConfig.rounds));
-      const nickname = email.replace(/(@).+/, '')
-      const user = await User.create({
-        password, nickname, email
-      })
-
-      // create
-      console.log(user);
-
-      // generate token
-      const token = await tokenUtil.create({
-        id: user.id,
-        nickname: user.nickname,
-        email: user.email
-      })
-
-      // responses
-      next.success(req, res, { token, id, nickname, email }, 200)
-    } catch (error) { next.error(req, res, error.message, 500) }
+    // TODO: generate credentials
+    body.password = await bcrypt.hashPass(body.password, Number.parseInt(authConfig.rounds));
+    body.username = body.email.replace(/(@).+/, '')
+    const newUser = await User.create(body)
+    if(!newUser) throw boom.badRequest('Request Error')
+    return newUser
   },
-  async verify(req, res) {
-    let token
-    req.hasOwnProperty('method')
-      ? token = req.body.token
-      : token = req.params.token
-    console.log(token);
-    // try {
-    //   await jwt.verify(token, authConfig.secret)
-    //   return res.status(200).send({ status: "ok", message: "token ok" })
-    // }
-    // catch (e) {
-    //   if (e instanceof jwt.TokenExpiredError)
-    //     return res.status(400).send({ status: "error", message: "token has expired" })
-    //   if (e instanceof jwt.JsonWebTokenError)
-    //     return res.status(400).send({ status: "error", message: "secret word is diferent" })
-    //   return res.status(400).send({ status: "error", message: "general error" })
-    // }
+
+
+  async forgotpassword(body) {
+    const user= await User.findOne({ where: { email: body.email } })
+    const linkToken = await tokenUtil.generateLink({ id: user.id, email: user.email })
+    return linkToken
+  },
+
+  async newpassword(newpassword, token) {
+    const user= await User.findOne({ where: { email: body.email } })
+    const linkToken = await tokenUtil.generateLink({ id: user.id, email: user.email })
+    return linkToken
   }
 }
+

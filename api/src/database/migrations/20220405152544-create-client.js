@@ -9,7 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_user: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
@@ -17,12 +16,12 @@ module.exports = {
         },
       },
       id_client_type: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "ClientTypes",
           key: "id"
         },
+        defaultValue: 1,
       },
       is_discount_survey: {
         allowNull: false,
@@ -30,9 +29,7 @@ module.exports = {
         defaultValue: false,
       },
       sign: {
-        allowNull: false,
         type: Sequelize.INTEGER,
-        defaultValue: 1234,
       },
       createdAt: {
         type: Sequelize.DATE,

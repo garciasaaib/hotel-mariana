@@ -18,7 +18,7 @@ module.exports = {
         secondlastname: "Saaib",
         identification_name: "INE",
         identification_code: "GASA94546",
-        phone: 3111145982,
+        phone: 3111155982,
       },
       {
         email: "sandino_varela@gmail.com",
@@ -107,13 +107,13 @@ module.exports = {
         lastname: "adranuz1",
         secondlastname: "adranuz1",
         identification_name: "INE",
-        identification_code: "GASA94546",
-        phone: 3111145983,
+        identification_code: "GASA94s46",
+        phone: 3111145985,
       },
     ])
     await queryInterface.bulkInsert('Clients', [
-      { id_user: 5, id_client_type: 1 },
-      { id_user: 6, id_client_type: 1 },
+      { id_user: 5 },
+      { id_user: 6 },
     ], {});
   },
 

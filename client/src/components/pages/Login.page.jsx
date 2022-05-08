@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import schema from '../../helpers/schemas'
 import { ReactSession } from 'react-client-session';
 
+
 import {
   TextField,
   Box,
@@ -30,7 +31,7 @@ export default function Login() {
     validationSchema: schema.login,
     onSubmit: (values) => {
       setFinished(true)
-
+      console.log(process.env.REACT_APP_API)
       // api request
 
       //success request 

@@ -1,5 +1,8 @@
+
+
+@endpoint = http://localhost:3001/api/v1/employees
 ### Room list with the info to check if is avaiable or not & why
-GET http://localhost:3001/api/v1/room HTTP/1.1
+GET {{endpoint}} HTTP/1.1
 
 
 ###

@@ -16,11 +16,12 @@ function ormErrorHandler(error, req, res, next) {
   if (error instanceof ValidationError) {
     res.status(409).json({
       statusCode: 409,
-      message: err.name,
-      errors: err.errors
+      message: error.errors[0].message,
+      errors: error.name
     });
+  } else {
+    next(error);
   }
-  next(err);
 }
 
 function errorHandler(error, req, res, next ) {

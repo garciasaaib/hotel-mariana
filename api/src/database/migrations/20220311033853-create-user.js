@@ -17,6 +17,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
         comment: 'Email Address',
+        unique: true
       },
       password: {
         allowNull: false,
@@ -43,11 +44,24 @@ module.exports = {
       },
       identification_code: {
         type: Sequelize.STRING,
-        comment: 'ID Card Code'
+        comment: 'ID Card Code',
+        unique: true
       },
       phone: {
         type: Sequelize.BIGINT,
-        comment: 'Cellphone Number'
+        comment: 'Cellphone Number',
+        unique: true
+      },
+      isValidEmail:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      isValidPhone:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      token: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,
