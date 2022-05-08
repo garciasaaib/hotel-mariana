@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-const { Employee } = require('../models')
+import { Employee } from '../database/models'
 
 export default {
   async index() {

@@ -1,0 +1,33 @@
+@api = http://localhost:3001/api/v1/clients
+
+
+### GET ALL CLIENTS
+GET {{api}}/ HTTP/1.1
+
+### GET ONE CLIENT DATA BY ID
+GET {{api}}/1 HTTP/1.1
+
+### UPDATE CLIENT DATA
+PUT {{api}}/1 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "garciaaaib@gmail.com",
+    "password": "garciasaaib",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+
+### GENERATE NEW CLIENT ACCOUNT
+POST {{api}}/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "garciaaaib@gmail.com",
+    "password": "garciasaaib",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+

@@ -1,0 +1,34 @@
+@api = http://localhost:3001/api/v1/employees
+
+
+### GET ALL EMPLOYEES & FILTER THEM
+GET {{api}}/ HTTP/1.1
+
+### GET ONE EMPLOYEE DATA
+GET {{api}}/1 HTTP/1.1
+
+### UPDATE EMPLOYEE DATA
+PUT {{api}}/1 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "garciaaaib@gmail.com",
+    "password": "garciasaaib",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+
+### GENERATE NEW EMPLOYEE ACCOUNT
+POST {{api}}/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "garciaaaib@gmail.com",
+    "password": "garciasaaib",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+
+

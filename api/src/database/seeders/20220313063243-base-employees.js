@@ -9,7 +9,7 @@ module.exports = {
     ], {});
     await queryInterface.bulkInsert('Users', [
       {
-        email: "garciasaaib@gmail.com",
+        email: "garciasaadddib@gmail.com",
         firstname: "Adrian",
         password: await hashPass("garciasaaib"),
         // password: "garciasaaib",

@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import { Room, RoomType, RoomPhoto } from '../models'
+import { Room, RoomType, RoomPhoto } from '../database/models'
 import options from '../utils/sequelizeOptions'
 const boom = require('@hapi/boom')
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 
-import employeeRouter from './employee.router'
+import employeeRouter from './employee'
 import clientRouter from './client'
 import roomRouter from './room'
 
@@ -28,8 +28,8 @@ export default (app) => {
   }, swaggerUi.serve, swaggerUi.setup());
 
   // normal routes
-  // router.use('/employee', employeeRouter)
-  router.use('/rooms', roomRouter)
-  router.use('/client', clientRouter)
+  // router.use('/employees', employeeRouter)
+  // router.use('/rooms', roomRouter)
+  // router.use('/client', clientRouter)
 
 }

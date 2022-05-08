@@ -1,10 +1,4 @@
 import { transporter } from '../config/mail'
-import { User, Client } from '../models/index'
-import tokenUtil from '../utils/token.utils'
-import authConfig from '../config/auth'
-import boom from '@hapi/boom'
-import modelToInput from '../utils/modelToInput.utils'
-import clientController from './client.controller'
 import {verifyMail as verifyEmailTemplate} from '../../templates/mailer/verifyEmail'
 
 module.exports = {

@@ -1,5 +1,5 @@
 import bcrypt from '../utils/bcryptMethods'
-import { User, Client } from '../models/index'
+import { User, Client } from '../database/models/index'
 import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
 import boom from '@hapi/boom'

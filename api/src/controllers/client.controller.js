@@ -1,4 +1,4 @@
-import { User, Client } from '../models/index'
+import { User, Client } from '../database/models/index'
 import modelToInput from '../utils/modelToInput.utils'
 import bcrypt from '../utils/bcryptMethods'
 import authConfig from '../config/auth'

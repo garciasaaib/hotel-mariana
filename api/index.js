@@ -21,7 +21,7 @@ import server from './src/server'
 import { transporter } from './src/config/mail'
 import 'dotenv/config'
 const { API_PORT } = process.env
-import { sequelize } from './src/models/index'
+import { sequelize } from './src/database/models'
 // const PORT = process.env.PORT
 server.listen(API_PORT, async () => {
   sequelize.authenticate({ force: false }).then(() => {
