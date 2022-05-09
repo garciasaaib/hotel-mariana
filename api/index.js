@@ -24,11 +24,7 @@ const { API_PORT } = process.env
 import { sequelize } from './src/database/models'
 // const PORT = process.env.PORT
 server.listen(API_PORT, async () => {
-  sequelize.authenticate({ force: false }).then(() => {
-    console.log(`DB connected`)
-  })
-  console.log(`API is in port ${API_PORT}`)
-  await transporter.verify().then(() => {
-    console.log('Ready to send emails');
-  })
+  await sequelize.authenticate({ force: false }).then(() => {console.log(`DB connected`)})
+  await transporter.verify().then(() => {console.log('Ready to send emails');})
+  await console.log(`API is in port ${API_PORT}`)
 })

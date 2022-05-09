@@ -4,6 +4,8 @@ import authController from '../../controllers/auth.controller'
 import mailerController from '../../controllers/mailer.controller'
 import validatorHandler from '../../middlewares/validationHandler';
 import { client, auth } from '../../database/schemas'
+import {success} from '../../middlewares/errorHandler'
+
 const router = Router()
 
 
@@ -14,7 +16,7 @@ router.post('/login',
   async (req, res, next) => {
     try {
       req.body = await authController.login(req.body, 1)
-      next()
+      success(req, res, next)
     } catch (error) { next(error) }
   }
 )
@@ -29,7 +31,7 @@ router.post('/register',
       console.log(req.body)
       // await mailerController.verifyEmail(req.body)
       // req.message = 'New user created. Check your email and verify your.'
-      next()
+      success(req, res, next)
     } catch (error) { next(error) }
   }
 )
@@ -39,7 +41,7 @@ router.post('/forgotpassword',
   async (req, res, next) => {
     try {
       req.body = await authController.forgotpassword(req.body)
-      next()
+      success(req, res, next)
     } catch (error) { next(error) }
   })
 
@@ -48,7 +50,7 @@ router.put('/newpassword',
   async (req, res, next) => {
     try {
       req.body = await authController.newpassword(req.body)
-      next()
+      success(req, res, next)
     } catch (error) { next(error) }
   })
 // router.get('/token', authController.token)

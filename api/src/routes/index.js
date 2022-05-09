@@ -28,8 +28,8 @@ export default (app) => {
   }, swaggerUi.serve, swaggerUi.setup());
 
   // normal routes
-  // router.use('/employees', employeeRouter)
-  // router.use('/rooms', roomRouter)
-  // router.use('/client', clientRouter)
+  router.use('/employees', employeeRouter)
+  router.use('/rooms', roomRouter)
+  router.use('/clients', clientRouter)
 
 }

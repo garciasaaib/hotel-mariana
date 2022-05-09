@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "psql:reset": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
-    "psql:start": "sudo service postgresql start"
+    "db:reset": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db:start": "sudo service postgresql start"
   },
   "keywords": [],
   "author": "",

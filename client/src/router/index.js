@@ -30,7 +30,7 @@ export default function Router() {
           {/* free routes */}
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/room" element={<Room />} />
+          <Route path="/room/:id" element={<Room />} />
 
           {/* auth routes */}
           <Route path="/login" element={<Login />} />

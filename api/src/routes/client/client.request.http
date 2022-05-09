@@ -1,8 +1,10 @@
 @api = http://localhost:3001/api/v1/clients
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJHZXJlbnRlIiwiUm9sZUlkIjoxLCJpYXQiOjE2NTA5MDMxNDcsImV4cCI6MTY1MDk4OTU0N30.gj8KYG-0oVMzGH1UUt-AeZ7ltjAE-TMRCtOHV1nCU4E
 
 
 ### GET ALL CLIENTS
 GET {{api}}/ HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### GET ONE CLIENT DATA BY ID
 GET {{api}}/1 HTTP/1.1

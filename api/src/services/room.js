@@ -75,4 +75,3 @@ export default {
   // update(req, res) {},
   // destroy(req, res) {},
 }
-
