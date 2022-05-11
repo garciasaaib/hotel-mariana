@@ -9,15 +9,15 @@ import clientController from './client.service'
 
 module.exports = {
   /** auth.login
-   * - Find that exists a user with that email
-   * - Match body password with userpassword
-   * - Create the token with data and role in it
+   * - Find all the existent reservations for this client and its associated tables
    * @param {*} body - request body
    * @param {*} role - role
    * @returns 
    */
   async index() {
-    const reservations = Reservation.findAll()
+    const reservations = Reservation.findAll({
+      
+    })
     return reservations
   },
 
