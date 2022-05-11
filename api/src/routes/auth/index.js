@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import clientController from '../../controllers/client.controller'
+import clientController from '../../controllers/client.service'
 import authController from '../../controllers/auth.controller'
-import mailerController from '../../controllers/mailer.controller'
+import mailerController from '../../controllers/mailer.service'
 import validatorHandler from '../../middlewares/validationHandler';
 import { client, auth } from '../../database/schemas'
 import {success} from '../../middlewares/errorHandler'

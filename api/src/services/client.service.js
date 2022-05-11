@@ -1,4 +1,4 @@
-import { User, Client } from '../database/models/index'
+import { User, Client, ClientType } from '../database/models/index'
 import modelToInput from '../utils/modelToInput.utils'
 import bcrypt from '../utils/bcryptMethods'
 import authConfig from '../config/auth'
@@ -28,28 +28,31 @@ module.exports = {
   /**
    * 
    */
-   async show({id}) {
-    const clientList = await Client.findOne({
-      where:{ id },
+  async show({ id }) {
+    const client = await Client.findOne({
+      where: { id },
       include: [
-        { model: User, as: "user" }
+        { model: User, as: "user" },
+        { model: ClientType }
       ]
     })
-    return clientList
+    if(!client) throw boom.notFound('Client not found.')
+    return client
   },
   /**
-   * 
+   * - Check if client exists
+   * - Create client
    * @param {*} body 
    * @returns 
    */
   async store(body) {
-    // TODO: check if client exists
+    console.log(body)
     const exsistClient = await Client.findOne({
-      where: {id_user: body.id}
+      where: { id_user: body.id }
     })
-    if(exsistClient) throw boom.badRequest('This account already exists.')
+    if (exsistClient) throw boom.badRequest('This account already exists.')
 
-    // todo: create client
+    
     const newClient = await Client.create({
       id_user: body.id
     })

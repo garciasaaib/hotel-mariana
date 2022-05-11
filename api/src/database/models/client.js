@@ -11,15 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Client.hasOne(models.Client_type, { as: 'id_client_type'})
       Client.belongsTo(models.User, {foreignKey: 'id_user', as: 'user'})
       Client.belongsTo(models.ClientType, {foreignKey: 'id_client_type'})
     }
   }
   Client.init({
-    // id_user: DataTypes.INTEGER,
     is_discount_survey: DataTypes.BOOLEAN,
-    // id_client_type: DataTypes.INTEGER,
     sign: DataTypes.INTEGER
   }, {
     sequelize,

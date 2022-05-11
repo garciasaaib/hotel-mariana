@@ -1,14 +1,14 @@
 import { Router } from 'express'
 import clientServices from '../../services/client.service'
-import authService from '../../services/auth.service'
+// import Service from '../../services/auth.service'
 import mailerServices from '../../services/mailer.service'
 import validatorHandler from '../../middlewares/validationHandler';
-import { client, auth } from '../../database/schemas'
+import {  } from '../../database/schemas'
 import {success} from '../../middlewares/errorHandler'
 
 const router = Router()
 
-// get all clients
+// get all reservations
 router.get('/', async (req, res, next) => {
   try {
     req.body = await clientServices.index()
@@ -16,8 +16,8 @@ router.get('/', async (req, res, next) => {
   } catch (error) { next(error) }
 })
 
-// get client details
-router.get('/:id', async (req, res, next) => {
+// create a reservation
+router.post('/:id', async (req, res, next) => {
   try {
     req.body = await clientServices.show(req.params)
     success(req, res, next)
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // login as client
-router.post('/login',
+router.get('/:id',
   validatorHandler(auth.login, 'body'),
   async (req, res, next) => {
     try {

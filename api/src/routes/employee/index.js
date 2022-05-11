@@ -1,5 +1,5 @@
 import { Router } from "express"
-import employeeController from '../../services/employee'
+import employeeService from '../../services/employee.service'
 import {success} from '../../middlewares/errorHandler'
 
 
@@ -7,13 +7,13 @@ const app = Router()
 
 app.get('/', async (req, res, next) => {
   try {
-    await employeeController.index()
+    await employeeService.index()
     success(req, res, next)
   } catch (error) {
     next(error)
   }
 })
-// app.post('/', employeeController.store)
-// app.put('/', employeeController.edit)
+// app.post('/', employeeService.store)
+// app.put('/', employeeService.edit)
 
 export default app

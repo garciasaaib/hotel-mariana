@@ -4,7 +4,7 @@ import tokenUtil from '../utils/token.utils'
 import authConfig from '../config/auth'
 import boom from '@hapi/boom'
 import modelToInput from '../utils/modelToInput.utils'
-import clientController from './client'
+import clientController from './client.service'
 
 
 module.exports = {

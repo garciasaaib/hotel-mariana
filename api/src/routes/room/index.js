@@ -1,5 +1,5 @@
 import { Router } from "express"
-import roomServices from '../../services/room'
+import roomServices from '../../services/room.service'
 import { roomType } from '../../database/schemas'
 import validatorHandler from '../../middlewares/validationHandler'
 import {success} from '../../middlewares/errorHandler'
