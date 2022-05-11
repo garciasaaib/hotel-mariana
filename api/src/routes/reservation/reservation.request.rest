@@ -1,17 +1,30 @@
-@api = http://localhost:3001/api/v1/reservation
+@api = http://localhost:3001/api/v1/reservations
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZmlyc3RuYW1lIjoiYWRyaWFuIiwibGFzdG5hbWUiOiJnYXJjaWEiLCJzZWNvbmRsYXN0bmFtZSI6InNhYWliIiwiZW1haWwiOiJsb2tva28xNkBnbWFpbC5jb20iLCJpc1ZhbGlkRW1haWwiOmZhbHNlLCJpc1ZhbGlkUGhvbmUiOmZhbHNlLCJyb2xlIjoxLCJpYXQiOjE2NTIxMDY4NjQsImV4cCI6MTY1MjE5MzI2NH0.jTwBudtZBv98wDs6CZLrbreb51JMAcaXPXqIzyYOZmo
 
 
+### Create a new reservation
+GET {{api}}/ HTTP/1.1
 
-
-### Login as a client
+### Create a new reservation
 POST {{api}}/ HTTP/1.1
 content-type: application/json
 
 {
     "idClient": "1",
-    "people": 2,
-    "roomType": 1,
     "startsAt": "02-02-2022",
-    "endsAt": "04-02-2022"
+    "endsAt": "04-02-2022",
+    "rooms": [
+      {
+        "type": 3,
+        "people": 2
+      },
+      {
+        "type": 3,
+        "people": 2
+      },
+      {
+        "type": 3,
+        "people": 2
+      }
+    ]
 }

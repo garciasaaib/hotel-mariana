@@ -1,32 +1,28 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reservations', {
+    await queryInterface.createTable('ReservationServices', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idClient: {
+      idReservationRoom: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Clients",
+          model: "ReservationRooms",
           key: "id"
         },
       },
-      idEmployee: {
+      idService: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Employees",
+          model: "Services",
           key: "id"
         },
-      },
-      isFinished: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reservations');
+    await queryInterface.dropTable('ReservationServices');
   }
 };

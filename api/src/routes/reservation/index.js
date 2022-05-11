@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import clientServices from '../../services/client.service'
+import reservationServices from '../../services/reservation.service'
 // import Service from '../../services/auth.service'
 import mailerServices from '../../services/mailer.service'
 import validatorHandler from '../../middlewares/validationHandler';
@@ -11,22 +11,29 @@ const router = Router()
 // get all reservations
 router.get('/', async (req, res, next) => {
   try {
-    req.body = await clientServices.index()
+    req.body = await reservationServices.index()
     success(req, res, next)
   } catch (error) { next(error) }
 })
 
 // create a reservation
-router.post('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    req.body = await clientServices.show(req.params)
+    req.body = await reservationServices.show(req.params)
+    success(req, res, next)
+  } catch (error) { next(error) }
+})
+
+// update a reservation
+router.put('/:id', async (req, res, next) => {
+  try {
+    req.body = await reservationServices.show(req.params)
     success(req, res, next)
   } catch (error) { next(error) }
 })
 
 // login as client
 router.get('/:id',
-  validatorHandler(auth.login, 'body'),
   async (req, res, next) => {
     try {
       req.body = await authService.login(req.body, 1)
@@ -47,20 +54,20 @@ router.get('/:id',
 // )
 
 // create a new client
-router.post('/register',
-  validatorHandler(client.new, 'body'),
-  async (req, res, next) => {
-    try {
-      req.body = await authService.register(req.body)
-      req.body = await clientServices.store(req.body)
-      // TODO: send email to confirm
-      // await mailerServices.verifyEmail(req.body)
-      req.body = 'OK'
-      req.message = 'New client created successfully'
-      success(req, res)
-    } catch (error) { next(error) }
-  }
-)
+// router.post('/register',
+//   validatorHandler(client.new, 'body'),
+//   async (req, res, next) => {
+//     try {
+//       req.body = await authService.register(req.body)
+//       req.body = await reservationServices.store(req.body)
+//       // TODO: send email to confirm
+//       // await mailerServices.verifyEmail(req.body)
+//       req.body = 'OK'
+//       req.message = 'New client created successfully'
+//       success(req, res)
+//     } catch (error) { next(error) }
+//   }
+// )
 
 // router.post('/forgotpassword',
 //   validatorHandler(auth.forgotpassword, 'body'),
@@ -86,11 +93,11 @@ router.post('/register',
 // router.post('/verify', authService.verify)
 
 // inputs to create a client
-router.get('/create', async (req, res, next) => {
-  try {
-    req.body = await clientServices.create()
-    success(req, res, next)
-  } catch (error) { next(error) }
-})
+// router.get('/create', async (req, res, next) => {
+//   try {
+//     req.body = await reservationServices.create()
+//     success(req, res, next)
+//   } catch (error) { next(error) }
+// })
 
 module.exports = router
