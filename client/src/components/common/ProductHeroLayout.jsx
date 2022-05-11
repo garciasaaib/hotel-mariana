@@ -45,12 +45,6 @@ function ProductHeroLayout(props) {
           alignItems: 'center',
         }}
       >
-        <img
-          src="/static/themes/onepirate/productHeroWonder.png"
-          alt="wonder"
-          width="147"
-          height="80"
-        />
         {children}
         <Box
           sx={{
@@ -66,10 +60,8 @@ function ProductHeroLayout(props) {
         />
         <Background sx={sxBackground} />
         <ExpandMoreIcon
-          // component="img"
-          // src="/static/themes/onepirate/productHeroArrowDown.png"
-          height="26"
-          width="22"
+          height="36"
+          width="32"
           alt="arrow down"
           sx={{ position: 'absolute', bottom: 32 }}
         />

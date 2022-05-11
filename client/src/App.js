@@ -2,9 +2,8 @@
 import { Component } from 'react'
 // styles
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Container } from '@mui/material'
 import { CssBaseline } from '@mui/material';
-import Router from './router'
+import Router from './components/router'
 
 
 const theme = createTheme({

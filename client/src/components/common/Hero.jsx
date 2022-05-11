@@ -2,11 +2,13 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
+import { useNavigate } from 'react-router-dom'
 
 const backgroundImage =
   'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
 
 export default function ProductHero() {
+  const navigate = useNavigate()
   return (
 
     <ProductHeroLayout
@@ -38,7 +40,7 @@ export default function ProductHero() {
         variant="contained"
         size="large"
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        onClick={() => navigate('/register')}
         sx={{ minWidth: 200 }}
       >
         Register

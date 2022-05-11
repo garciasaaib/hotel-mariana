@@ -4,7 +4,7 @@ import fieldsSchema from '../../helpers/fields'
 import { useFormik } from 'formik';
 import schema from '../../helpers/schemas'
 import { ReactSession } from 'react-client-session';
-
+import swal from 'sweetalert';
 
 import {
   TextField,
@@ -35,6 +35,7 @@ export default function Login() {
       // api request
 
       //success request 
+      swal("Good job!", "You have been logged successfully!", "success");
       ReactSession.setStoreType("sessionStorage");
       ReactSession.set("username", "Bob");
     },

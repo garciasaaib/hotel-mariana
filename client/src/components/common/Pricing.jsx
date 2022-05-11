@@ -10,48 +10,26 @@ import Grid from '@mui/material/Grid';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
 
-const tiers = [
-  {
-    title: 'Free',
-    price: '0',
-    description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
-    ],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
 
 export default function Pricing() {
+  const roomTypes = useSelector((state) => state.roomTypes.all);
+  const navigate = useNavigate()
+  const tiers = [
+    {
+      buttonText: 'Enjoy this service',
+      buttonVariant: 'outlined',
+    },
+    {
+      buttonText: 'More Details',
+      buttonVariant: 'contained',
+    },{
+      buttonText: 'Live the experience',
+      buttonVariant: 'outlined',
+    },
+  ];
   return (
     <>
       <Container disableGutters component="section" sx={{ pt: 8, pb: 6, pl: 6, pr: 6, m: 4, margin: 'auto' }}>
@@ -74,21 +52,22 @@ export default function Pricing() {
         </Grid>
 
         <Grid container spacing={5} alignItems="flex-end" >
-          {tiers.map((tier) => (
+          {roomTypes.map((type, id) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
               item
-              key={tier.title}
+              key={type.name}
               xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
+              sm={type.name === 'Enterprise' ? 12 : 6}
               md={4}
+              sx= {{ bgImage: type.img}}
             >
               <Card>
                 <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
+                  title={type.name}
+                  subheader={type.name}
                   titleTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
+                  action={type.name === 'Suite Imperial' ? <StarIcon /> : null}
                   subheaderTypographyProps={{
                     align: 'center',
                   }}
@@ -109,28 +88,29 @@ export default function Pricing() {
                     }}
                   >
                     <Typography component="h2" variant="h3" color="text.primary">
-                      ${tier.price}
+                      ${type.price}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      /mo
+                    <Typography variant="small" color="text.secondary">
+                      p/n
                     </Typography>
                   </Box>
-                  <ul>
-                    {tier.description.map((line) => (
+                  <ul style={{ padding: 0}}>
+                    {type.services.map((line) => (
                       <Typography
-                        component="li"
-                        variant="subtitle1"
+                        component="div"
+                        variant="subtitle2"
                         align="center"
                         key={line}
+
                       >
-                        {line}
+                        <StarIcon style={{ fontSize: "10px" }}/> {line}
                       </Typography>
                     ))}
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button color="secondary" fullWidth variant={tier.buttonVariant}>
-                    {tier.buttonText}
+                  <Button onClick={() =>navigate(`./room/${++id}`)} color="secondary" fullWidth variant={tiers[id].buttonVariant}>
+                    {tiers[id].buttonText}
                   </Button>
                 </CardActions>
               </Card>

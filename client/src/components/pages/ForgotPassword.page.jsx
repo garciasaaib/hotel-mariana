@@ -5,6 +5,7 @@ import fields from '../../helpers/fields'
 import schema from '../../helpers/schemas'
 import axios from 'axios'
 import { AccessAlarm } from "@mui/icons-material";
+import swal from 'sweetalert';
 import {
   TextField,
   Box,
@@ -14,21 +15,10 @@ import {
   Avatar,
   Typography,
 } from '@mui/material'
+import FormForgotPassword from '../common/Forms/FormForgotPassword'
 
 export default function ForgotPassword() {
   const navigate = useNavigate()
-  const [finished, setFinished] = React.useState(false)
-  const field = fields.forgotpassword
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
-    validationSchema: schema.forgotpassword,
-    onSubmit: (values) => {
-      setFinished(true)
-      console.log(values)
-    },
-  });
 
   return (
     <Box
@@ -45,47 +35,14 @@ export default function ForgotPassword() {
       <Typography component="h1" variant="h5">
         Recover Password
       </Typography>
-      <Box
-        component="form"
-        noValidate
-        onSubmit={formik.handleSubmit}
-        sx={{ mt: 1 }}
-      >
-        <TextField
-          disabled={finished ? true : false}
-          type={field.type}
-          label={field.label}
-          name={field.name}
-          margin="normal"
-          required
-          fullWidth
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        {finished &&
-          <Typography component="p" variant="p">
-            Check your email to reset your account
-          </Typography>
-        }
-        <Button
-          disabled={finished ? true : false}
-          type="submit"
-          value="Iniciar Sesion"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 3, mb: 2 }}
-          color="secondary"
-        >Send Email</Button>
-        <Grid container>
-          <Grid item>
-            <Link onClick={() => navigate('/login')} color="secondary" variant="body2">
-              {"Return to login"}
-            </Link>
-          </Grid>
-        </Grid>
-      </Box>
+      <Grid item>
+        <FormForgotPassword />
+      </Grid>
+      <Grid item>
+        <Link onClick={() => navigate('/login')} color="secondary" variant="body2">
+          {"Return to login"}
+        </Link>
+      </Grid>
     </Box>
   )
 }
