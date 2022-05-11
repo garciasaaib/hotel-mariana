@@ -1,0 +1,51 @@
+@api = http://localhost:3001/api/v1/clients
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZmlyc3RuYW1lIjoiYWRyaWFuIiwibGFzdG5hbWUiOiJnYXJjaWEiLCJzZWNvbmRsYXN0bmFtZSI6InNhYWliIiwiZW1haWwiOiJsb2tva28xNkBnbWFpbC5jb20iLCJpc1ZhbGlkRW1haWwiOmZhbHNlLCJpc1ZhbGlkUGhvbmUiOmZhbHNlLCJyb2xlIjoxLCJpYXQiOjE2NTIxMDY4NjQsImV4cCI6MTY1MjE5MzI2NH0.jTwBudtZBv98wDs6CZLrbreb51JMAcaXPXqIzyYOZmo
+
+
+
+
+### Login as a client
+POST {{api}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "lokoko16@gmail.com",
+    "password": "lokoko16"
+}
+
+### GENERATE NEW CLIENT ACCOUNT
+POST {{api}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "lokoko16@gmail.com",
+    "password": "lokoko16",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+
+
+### UPDATE CLIENT DATA
+PUT {{api}}/1 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "garciaaaib@gmail.com",
+    "password": "garciasaaib",
+    "firstname": "adrian",
+    "lastname": "garcia",
+    "secondlastname": "saaib"
+}
+
+### GET ONE CLIENT DATA BY ID: client
+GET {{api}}/show HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET ALL CLIENTS: employee
+GET {{api}}/ HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET ONE CLIENT DATA BY ID: employee
+GET {{api}}/2 HTTP/1.1
+Authorization: Bearer {{token}}

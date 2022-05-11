@@ -13,14 +13,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       is_available: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.BOOLEAN
       },
       id_room_type: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Room_types",
+          model: "RoomTypes",
           key: "id"
         },
       },

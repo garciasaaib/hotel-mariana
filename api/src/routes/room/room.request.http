@@ -1,0 +1,17 @@
+### vars
+@endpoint = http://localhost:3001/api/v1/rooms
+
+
+
+
+### SHOW ALL ROOMS
+GET {{endpoint}} HTTP/1.1
+
+### SHOW ALL ROOMS & FILTER BY QUERYS
+GET {{endpoint}}?page=3 HTTP/1.1
+
+### SHOW ALL TYPES OF ROOMS
+GET {{endpoint}}/types HTTP/1.1
+
+### SHOW DETAILS OF A TYPE OF ROOMS
+GET {{endpoint}}/types/3 HTTP/1.1

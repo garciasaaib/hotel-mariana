@@ -6,70 +6,73 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       firstname: {
-        // allowNull: false,
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        comment: 'First Name'
       },
       email: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true,
         comment: 'Email Address',
-        validate: {
-          isEmail: {
-            msg: 'Please enter a valid email'
-          },
-          notNull: {
-            args: true,
-            msg: "Required"
-          },
-        }
+        unique: true
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING,
         comment: 'Password',
-        validate: {
-          min: {
-            args: 8,
-            msg: "Must be 8 or more characters"
-          },
-          notNull: {
-            args: true,
-            msg: "Required"
-          },
-          isAlphanumeric: {
-            args: true,
-            msg: "At last 1 number & 1 letter"
-          },
-        }
       },
-      nickname: {
-        // allowNull: false,
-        type: Sequelize.STRING
+      username: {
+        type: Sequelize.STRING,
+        comment: 'User Name'
       },
       lastname: {
-        // allowNull: false,
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        comment: 'Last Name'
       },
       secondlastname: {
-        // allowNull: false,
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        comment: 'Second Lastname'
       },
       identification_name: {
-        // allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'ID Card Name'
       },
       identification_code: {
-        // allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: 'ID Card Code',
+        unique: true
       },
       phone: {
-        // allowNull: false,
-        type: Sequelize.BIGINT
+        type: Sequelize.BIGINT,
+        comment: 'Cellphone Number',
+        unique: true
       },
+      isValidEmail:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      isValidPhone:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      token: {
+        type: Sequelize.STRING,
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      }
     });
   },
   async down(queryInterface, Sequelize) {

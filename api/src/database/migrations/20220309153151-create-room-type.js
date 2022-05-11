@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Room_types', {
+    await queryInterface.createTable('RoomTypes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       price: {
         allowNull: false,
         type: Sequelize.FLOAT(2),
@@ -20,10 +24,20 @@ module.exports = {
       max_guest: {
         allowNull: false,
         type: Sequelize.INTEGER
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Room_types');
+    await queryInterface.dropTable('RoomTypes');
   }
 };

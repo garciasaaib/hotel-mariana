@@ -1,12 +1,16 @@
-exports.success = (req, res, message = 'OK', status = 200) => {
-  res.status(status).send({
+
+
+exports.success = (req, res, next) => {
+  res.status(req.status || 200).json({
     error: false,
-    status: status,
-    body: message
+    status: req.status || 200,
+    message: req.message || "Request completed successfully",
+    body: req.body,
+
   })
 }
 
-exports.error = (req,res, message = 'Internal server error',status = 500) => {
+exports.error = (req, res, message = 'Internal server error', status = 500) => {
   res.status(status).send({
     error: true,
     status: status,
